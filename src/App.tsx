@@ -1,10 +1,7 @@
 import React from "react";
-import { ReactDOM } from "react";
 
-const Index = () => {
-    return <div>Hello,hhd!
-        dsagsd
-    </div>
-}
+const App: React.FC = () => {
+  return <>app</>;
+};
 
-export default Index
+export default App;

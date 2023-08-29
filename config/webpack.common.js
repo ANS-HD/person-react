@@ -1,8 +1,10 @@
 const path = require('path');
 //清除build/dist文件夹文件
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 //生成创建Html入口文件
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// 编译进度条
+const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 
 //引入webpack
 const webpack = require('webpack');
@@ -23,10 +25,7 @@ module.exports = {
           },
       //配置插件
         plugins: [
-        //使用插件清除dist文件夹中的文件
-            // new CleanWebpackPlugin({
-            //     path: './dist'
-            // }),
+            new CleanWebpackPlugin(),
         //使用插件生成Html入口文件
             new HtmlWebpackPlugin({
              //模板文件路径
@@ -34,6 +33,9 @@ module.exports = {
             //模板文件名
                 // filename: "index.html",
             }),
+            // new ProgressBarPlugin({
+            //     format: `:msg [:bar] ${chalk.green.bold(':percent')} (:elapsed s)`
+            //  }),
         ],
        
         module: {
@@ -45,5 +47,4 @@ module.exports = {
                 }
             ]
         },
-        // plugins: [new HtmlWebpackPlugin()],
     }
