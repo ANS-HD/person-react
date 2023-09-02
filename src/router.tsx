@@ -1,22 +1,33 @@
 import React from "react";
-import { Navigate, RouteObject, useRoutes } from "react-router-dom";
-import blogRouters from './blog/router'
+import { Navigate, RouteObject } from "react-router-dom";
+import blogRouters from "./blog/router";
 import Home from "./pages/home";
+import About from "./pages/about";
+import Layout from "./layout";
 
 const routes: RouteObject[] = [
   {
     path: "/",
-    element: <Navigate to="/home"/>,
+    element: <Navigate to="/home" />,
   },
   {
-    path: "/home",
-    element: <Home/>,
+    element: <Layout />,
+    children: [
+      {
+        path: "home",
+        element: <Home />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+    ],
   },
   {
-    path: "*",
+    path: "",
     element: <>404 Not Found!</>,
   },
-  ...blogRouters
+  ...blogRouters,
 ];
 
-export default useRoutes(routes);
+export default routes;
