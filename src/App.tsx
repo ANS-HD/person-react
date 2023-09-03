@@ -1,14 +1,25 @@
-import React, { useEffect, Suspense } from "react";
-import { useRoutes, Outlet } from "react-router-dom";
+import React from "react";
+import { useRoutes } from "react-router-dom";
 import routes from "./router";
-import Layout from "./layout";
+import { ConfigProvider } from "antd";
 
 function App() {
   const GetRoutes = () => useRoutes(routes);
-  useEffect(() => {
-    console.log(window);
-  }, []);
-  return <GetRoutes/>;
+  return (
+    // <ConfigProvider
+    //   theme={{
+    //     token: {
+    //       colorPrimary: "#00b96b",
+    //       borderRadius: 2,
+
+    //       // 派生变量，影响范围小
+    //       colorBgContainer: "#f6ffed",
+    //     },
+    //   }}
+    // >
+      <GetRoutes />
+    // </ConfigProvider>
+  );
 }
 
 export default App;
