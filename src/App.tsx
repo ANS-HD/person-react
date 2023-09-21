@@ -1,10 +1,14 @@
-import React from "react";
-import { ReactDOM } from "react";
+import React, { useEffect, Suspense } from "react";
+import { useRoutes, Outlet } from "react-router-dom";
+import routes from "./router";
+import Layout from "./layout";
 
-const Index = () => {
-    return <div>Hello,hhd!
-        dsagsd
-    </div>
+function App() {
+  const GetRoutes = () => useRoutes(routes);
+  useEffect(() => {
+    console.log(window);
+  }, []);
+  return <GetRoutes/>;
 }
 
-export default Index
+export default App;
