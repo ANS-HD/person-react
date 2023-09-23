@@ -85,6 +85,9 @@ devDependencies:
   source-map-loader:
     specifier: ^4.0.1
     version: registry.npmmirror.com/source-map-loader@4.0.1(webpack@5.88.1)
+  style-loader:
+    specifier: ^3.3.3
+    version: registry.npmmirror.com/style-loader@3.3.3(webpack@5.88.1)
   ts-loader:
     specifier: ^9.4.4
     version: registry.npmmirror.com/ts-loader@9.4.4(typescript@5.1.6)(webpack@5.88.1)
