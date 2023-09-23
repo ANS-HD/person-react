@@ -3,8 +3,7 @@ const path = require('path');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 //生成创建Html入口文件
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// 编译进度条
-const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
 
 //引入webpack
 const webpack = require('webpack');
@@ -26,6 +25,7 @@ module.exports = {
       //配置插件
         plugins: [
             new CleanWebpackPlugin(),
+            new NodePolyfillPlugin(),
         //使用插件生成Html入口文件
             new HtmlWebpackPlugin({
              //模板文件路径
@@ -33,9 +33,6 @@ module.exports = {
             //模板文件名
                 // filename: "index.html",
             }),
-            // new ProgressBarPlugin({
-            //     format: `:msg [:bar] ${chalk.green.bold(':percent')} (:elapsed s)`
-            //  }),
         ],
        
         module: {

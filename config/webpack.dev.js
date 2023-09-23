@@ -1,30 +1,34 @@
-const {merge} = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const path = require('path');
 const base = require('./webpack.common');
 const webpack = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const ErrorOverlayPlugin = require('error-overlay-webpack-plugin')
+const WebpackBar = require('webpackbar')
 
 module.exports = merge(base, {
-   //模块参数
+    //模块参数
     mode: 'development',
-//启用source-map方便调试
+    //启用source-map方便调试
     devtool: 'source-map',
     plugins: [
         // new BundleAnalyzerPlugin()
+        new ErrorOverlayPlugin(),
+        new WebpackBar()
     ],
     devServer: {
         static: {
-          directory: path.join(__dirname, "dist"),
+            directory: path.join(__dirname, "dist"),
         },
         open: true,
         port: 9000,
-        historyApiFallback: true
-      },
+        historyApiFallback: true,
+    },
     module: {
         rules: [
             {
                 test: /\.css$/,
-                use: [ 'style-loader', 'css-loader' ]
+                use: ['style-loader', 'css-loader']
             },
             // 图片
             {
@@ -33,13 +37,13 @@ module.exports = merge(base, {
             },
             // 字体
             {
-            test: /\.(eot|ttf|woff|woff2)$/,
-            type: "asset/resource",
-            generator: {
-            filename: "fonts/[hash][ext][query]",
-            },
+                test: /\.(eot|ttf|woff|woff2)$/,
+                type: "asset/resource",
+                generator: {
+                    filename: "fonts/[hash][ext][query]",
+                },
             }
- 
+
         ]
     }
 });

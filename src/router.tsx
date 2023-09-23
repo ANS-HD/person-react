@@ -4,6 +4,7 @@ import blogRouters from "./blog/router";
 import Home from "./pages/home";
 import About from "./pages/about";
 import Layout from "./layout";
+import Individual from "./pages/Individual";
 
 const routes: RouteObject[] = [
   {
@@ -20,6 +21,10 @@ const routes: RouteObject[] = [
       {
         path: "about",
         element: <About />,
+      },
+      {
+        path: "individual",
+        element: <Individual />,
       },
     ],
   },

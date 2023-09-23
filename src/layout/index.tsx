@@ -3,27 +3,27 @@ import { Layout, Menu, Tabs, theme } from "antd";
 import { Link, useLocation } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 
 function Index() {
   const location = useLocation();
-  console.log(location);
 
   return (
     <Layout className="layout">
-      <Header style={{ display: "flex", alignItems: "center" }}>
-      <Tabs defaultActiveKey={location.pathname}   >
-      </Tabs>
+      <Header >
         <Menu
           theme="dark"
           mode="horizontal"
           defaultSelectedKeys={[location.pathname]}
         >
-          <Menu.Item key="/">
+          <Menu.Item key="/home">
             <Link to="/">Home </Link>
           </Menu.Item>
           <Menu.Item key="/about">
             <Link to="/about">About</Link>
+          </Menu.Item>
+          <Menu.Item key="/individual">
+            <Link to="/individual">individual</Link>
           </Menu.Item>
         </Menu>
       </Header>
