@@ -14,6 +14,7 @@ module.exports = merge(base, {
     plugins: [
         // new BundleAnalyzerPlugin()
         new ErrorOverlayPlugin(),
+        // 编译进度条
         new WebpackBar()
     ],
     devServer: {
