@@ -1,7 +1,12 @@
 import React from "react";
 
+
 const Index: React.FC = () => {
-    return <div>home111</div>
+    console.log('home');
+    
+    return <div>
+        das
+    </div>
 }
 
 export default Index

@@ -7,7 +7,6 @@ const { Header, Content, Footer } = Layout;
 
 function Index() {
   const location = useLocation();
-  console.log(location);
 
   return (
     <Layout className="layout">
@@ -19,11 +18,17 @@ function Index() {
           mode="horizontal"
           defaultSelectedKeys={[location.pathname]}
         >
-          <Menu.Item key="/">
-            <Link to="/">Home </Link>
+          <Menu.Item key="/home">
+            <Link to="/">博客主页 </Link>
           </Menu.Item>
           <Menu.Item key="/about">
-            <Link to="/about">About</Link>
+            <Link to="/about">所有文章</Link>
+          </Menu.Item>
+          <Menu.Item key="/about">
+            <Link to="/about">标签</Link>
+          </Menu.Item>
+          <Menu.Item key="/about">
+            <Link to="/about">关于我</Link>
           </Menu.Item>
         </Menu>
       </Header>

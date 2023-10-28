@@ -5,9 +5,6 @@ import Layout from "./layout";
 
 function App() {
   const GetRoutes = () => useRoutes(routes);
-  useEffect(() => {
-    console.log(window);
-  }, []);
   return <GetRoutes/>;
 }
 
