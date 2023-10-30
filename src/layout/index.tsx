@@ -27,7 +27,6 @@ function Index() {
           </Menu.Item>
           <Menu.Item key="/label">
             <Link to="/label">标签</Link>
-            
           </Menu.Item>
           {/* </div> */}
           <Menu.Item key="/user">
