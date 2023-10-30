@@ -3,6 +3,8 @@ import { Navigate, RouteObject } from "react-router-dom";
 import blogRouters from "./blog/router";
 import Home from "./pages/home";
 import About from "./pages/about";
+import Label from "./pages/label";
+import User from "./pages/user";
 import Layout from "./layout";
 
 const routes: RouteObject[] = [
@@ -20,6 +22,14 @@ const routes: RouteObject[] = [
       {
         path: "about",
         element: <About />,
+      },
+      {
+        path: "label",
+        element: <Label />,
+      },
+      {
+        path: "user",
+        element: <User />,
       },
     ],
   },

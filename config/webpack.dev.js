@@ -19,7 +19,6 @@ module.exports = merge(base, {
         open: true,
         port: 9000,
         historyApiFallback: true,
-
       },
     module: {
         rules: [
