@@ -9,7 +9,6 @@ const Index: React.FC = () => {
     const a =1
     const res = useRequest(() => userList({name: 'name1'}), {
         onSuccess: (res) => {
-            // console.log(res);
             
         }
     })
