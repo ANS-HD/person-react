@@ -22,15 +22,18 @@
     "react-loadable": "^5.5.0",
     "react-router-dom": "^6.14.1",
     "style-loader": "^3.3.3",
-    "styled-components": "^6.0.7"
+    "styled-components": "^6.0.7",
+    "tailwindcss": "^3.3.5"
   },
   "devDependencies": {
     "@babel/core": "^7.22.6",
     "@babel/preset-env": "^7.22.6",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
+    "@fullhuman/postcss-purgecss": "^5.0.0",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
+    "autoprefixer": "^10.4.16",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^9.1.2",
     "clean-webpack-plugin": "^4.0.0",
@@ -39,6 +42,8 @@
     "file-loader": "^6.2.0",
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.3",
+    "mini-css-extract-plugin": "^2.7.6",
+    "postcss-loader": "^7.3.3",
     "progress-bar-webpack-plugin": "^2.1.0",
     "react-scripts": "^5.0.1",
     "source-map-loader": "^4.0.1",
