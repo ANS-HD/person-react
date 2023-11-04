@@ -54,8 +54,8 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: 'css/[name].[hash].css',
         }),
-        require('tailwindcss'),
-        PurgeCss(PurgeOptions),
+        // require('tailwindcss'),
+        // PurgeCss(PurgeOptions),
     ],
 
     module: {
