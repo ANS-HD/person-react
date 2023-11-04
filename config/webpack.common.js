@@ -39,6 +39,9 @@ module.exports = {
         clean: true //每次打包前清空目录
     },
     resolve: {
+        alias: {
+            "@": path.resolve(__dirname,'../src')
+        },
         extensions: ['.tsx', '.ts', '.js', '.json'],
     },
     //配置插件
@@ -88,4 +91,6 @@ module.exports = {
             }
         ]
     },
+    
+ 
 }
