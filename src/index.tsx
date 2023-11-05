@@ -17,7 +17,7 @@ root.render(
        theme={{
         algorithm: theme.defaultAlgorithm,
         token: {
-          colorPrimary: '#499',
+          colorPrimary: '#6492a6',
           colorBgBase:'#ffffff',
         },
       }}

@@ -4,7 +4,7 @@ class Tag extends Model {}
 
 Tag.init(
   {
-    name: {
+    tagName: {
       comment: "标签名称",
       type: DataTypes.STRING,
       allowNull: false,
@@ -22,5 +22,6 @@ Tag.init(
     modelName: "Tag",
   }
 );
+
 
 module.exports = Tag;

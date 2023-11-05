@@ -5,7 +5,8 @@ let instance = axios.create({
     timeout: 10000,
 })
 
-axios.interceptors.request.use(
+// instance.defaults.headers.post['Content-Type'] = 'application/json';
+instance.interceptors.request.use(
     config => {
         console.log(config) // 该处可以将config打印出来看一下，该部分将发送给后端（server端）
         // config.headers['Access-Control-Allow-Origin'] = '*'
@@ -18,7 +19,7 @@ axios.interceptors.request.use(
     }
 )
 
-axios.interceptors.response.use(function (response) {
+instance.interceptors.response.use(function (response) {
     // 响应状态码为 2xx 时触发成功的回调，形参中的 response 是“成功的结果”
     console.log(response);
     
@@ -52,7 +53,7 @@ export const post = <T = any>(
         data?: any
     }
 ): Promise<{ data: T }> => instance.post(url, options?.data, {
-    params: options?.params
+    // params: options?.params
 })
 
 export  default {

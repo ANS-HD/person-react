@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocalStorageState, useLocation, useNavigate, useRoutes } from "@/hooks";
+import { useLocation, useNavigate, useRoutes } from "@/hooks";
 import type { NavigateFunction } from "@/hooks";
 import routes from "@/router";
 import { message } from "antd";
@@ -17,9 +17,7 @@ export interface RouteObject {
 const Index: React.FC = () => {
     const location = useLocation()
     const navigate = useNavigate()
-    const [, setIsAuth] = useLocalStorageState<boolean>('auth', {
-      defaultValue: false
-    })
+    const [isAuth, setIsAuth] = useState<boolean>(false)
 
     function searchRouteDetail(
         path: string,
@@ -28,9 +26,10 @@ const Index: React.FC = () => {
         for (let item of routes) {
           if (item.path === path) return item;
           if (item.children) {
-          return searchRouteDetail(path, item.children);
+            return searchRouteDetail(path, item.children);
           }
         }
+        return null;
       }
       
 
@@ -41,24 +40,21 @@ const Index: React.FC = () => {
         routes: RouteObject[]
     ) {
 
-      
-      
-      //找到对应的路由信息，判断有没有权限控制
-      const routeDetail = searchRouteDetail(pathname, routes);
-        
+    
+        //找到对应的路由信息，判断有没有权限控制
+        const routeDetail = searchRouteDetail(pathname, routes);
         //没有找到路由，跳转404
         if (!routeDetail) {
-          console.log(routeDetail, location.pathname);
-        //  navigate("/404");
+         navigate("/404");
          return false;
         }
         //如果需要权限验证
-        if (routeDetail.index) {
+        if (routeDetail.auth) {
         const token = localStorage.getItem("blogtoken");
         
         if (!token) {
             message.error("请登录");
-            navigate('/login');
+            navigate(-1);
             return false;
           }
         }
@@ -66,20 +62,13 @@ const Index: React.FC = () => {
     }
 
     useEffect(() => {
-      setIsAuth(guard(location.pathname, navigate, routes))
-    }, [location.pathname]);
+        setIsAuth(guard(location.pathname, navigate, routes));
+    }, [location, navigate, routes]);
 
-    const Route = () => useRoutes(routes);
+    const Route = useRoutes(routes);
 
   
-    return <Route/>
+    return isAuth ? Route : null 
 }
 
 export default Index
-
-// function App() {
-//   const GetRoutes = () => useRoutes(routes);
-//   return <GetRoutes/>;
-// }
-
-// export default App;

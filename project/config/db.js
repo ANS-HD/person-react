@@ -10,6 +10,7 @@ module.exports = {
         throw err
       }else {
         console.log('数据库连接成功...')
+        
       }
       //开始数据操作
       connection.query(sql, params, function (err, results, fields) {

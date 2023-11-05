@@ -5,9 +5,11 @@ import Home from "./pages/home";
 import About from "./pages/about";
 import Label from "./pages/label";
 import User from "./pages/user";
+import Login from "@/pages/login";
 import Layout from "./layout";
 
-const routes: RouteObject[] = [
+
+const routes: (RouteObject&{auth?: boolean})[] = [
   {
     path: "/",
     element: <Navigate to="/home" />,
@@ -16,20 +18,28 @@ const routes: RouteObject[] = [
     element: <Layout />,
     children: [
       {
-        path: "home",
+        path: "/home",
         element: <Home />,
       },
       {
-        path: "about",
+        path: "/about",
         element: <About />,
       },
       {
-        path: "label",
+        path: "/label",
         element: <Label />,
       },
       {
-        path: "user",
+        path: "/user",
         element: <User />,
+        // 
+        index: true
+      },
+      {
+        path: "/login",
+        element: <Login />,
+        // 
+        index: true
       },
     ],
   },

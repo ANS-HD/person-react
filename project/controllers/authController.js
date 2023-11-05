@@ -33,13 +33,21 @@ async function register(req, res) {
       // 检查用户名是否存在
       const user = await User.findOne({ where: { username } });
       if (!user) {
-        return res.status(401).json({ msg: "Invalid username or password" });
+        const data = {
+          message: 'Invalid username or password',
+          status: 401
+        }
+        return res.status(401).json({data: data});
       }
   
       // 检查密码是否匹配
       const isPasswordMatch = await bcrypt.compare(password, user.password);
       if (!isPasswordMatch) {
-        return res.status(401).json({ msg: "Invalid username or password" });
+        const data = {
+          message: 'Invalid username or password',
+          status: 401
+        }
+        return res.status(401).json({data: data});
       }
   
       // 更新用户的最后在线时间
@@ -50,9 +58,14 @@ async function register(req, res) {
       const token = jwt.sign({ userId: user.id }, "ans-hd-blog", {
         expiresIn: "24h",
       });
+
+      const data = {
+        token, account: user.username, nickname: user.nickname, userId: user.id,
+        status: 200
+      }
   
       // 返回包含令牌、账号名和用户名的响应
-      res.json({ token, account: user.username, nickname: user.nickname, userId: user.id});
+      res.json({data: data});
     } catch (error) {
       res.status(500).json({ msg: "Failed to log in" });
     }
