@@ -1,5 +1,6 @@
 const Tag = require("../models/tag");
 
+
 async function createTag(req, res) {
     try {
       const { name } = req.body;
@@ -18,9 +19,9 @@ async function createTag(req, res) {
   
         // 标签如果已经删除了则直接将其恢复并更新创建时间
         oldTag.isDeleted = false;
-        const newDate = +new Date();
-        oldTag.createdAt = newDate;
-        oldTag.updatedAt = newDate;
+        const newDate =  new Date();
+        oldTag.createdAt =new Date();
+        oldTag.updatedAt = new Date();
   
         await oldTag.save();
         return res.json(oldTag);
@@ -36,6 +37,7 @@ async function createTag(req, res) {
 
 
   async function getTags(req, res) {
+    console.log(req,res);
     try {
       const tags = await Tag.findAll({
         where: { isDeleted: false },
@@ -47,6 +49,7 @@ async function createTag(req, res) {
       }
       res.json({data: data});
     } catch (error) {
+        // console.log(error);
       res.status(500).json({ error: error.message });
     }
   } 

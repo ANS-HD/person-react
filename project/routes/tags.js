@@ -8,6 +8,6 @@ router.post('/create', tagController.createTag);
 // 查询所有标签
 router.get('/list', tagController.getTags);
 // 根据 id 删除标签
-router.delete('/delete/:id', tagController.deleteTag);
+// router.delete('/delete/:id', tagController.deleteTag);
 
 module.exports = router;
