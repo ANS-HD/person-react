@@ -1,7 +1,15 @@
 import { Request } from "@/utils";
 
-export const tags =(params: any) => Request.get('/tags/list',{
-    params
+export namespace Tags {
+    export type Response = {
+        list: {
+            id: number;
+            tagName: string;
+        }[]
+    }
+}
+
+export const tags =() => Request.get<Tags.Response>('/tags/list',{
 }) 
 
 export const createTags =(data: any) => Request.post('/tags/create',{

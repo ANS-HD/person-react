@@ -44,7 +44,7 @@ export const get = <T = any>(
         params?: any;
         data?: any
     }
-): Promise<{ data: T }> => instance.get(url, options)
+): Promise<{data: T} > => instance.get(url, options)
 
 export const post = <T = any>(
     url: string,
@@ -52,7 +52,7 @@ export const post = <T = any>(
         params?: any;
         data?: any
     }
-): Promise<{ data: T }> => instance.post(url, options?.data, {
+): Promise<{data: T} > => instance.post(url, options?.data, {
     // params: options?.params
 })
 

@@ -3,10 +3,10 @@ const Tag = require("../models/tag");
 
 async function createTag(req, res) {
     try {
-      const { name } = req.body;
+      const { tagName } = req.body;
       const oldTag = await Tag.findOne({
         where: {
-          name,
+          tagName,
         }
       });
   
@@ -14,7 +14,10 @@ async function createTag(req, res) {
       if (oldTag) {
         // 标签没删除
         if (!oldTag.isDeleted) {
-          return res.json({ msg: "标签已存在" });
+          const data = {
+            message: "标签已存在"
+          }
+          return res.json(data);
         }
   
         // 标签如果已经删除了则直接将其恢复并更新创建时间
@@ -24,12 +27,20 @@ async function createTag(req, res) {
         oldTag.updatedAt = new Date();
   
         await oldTag.save();
-        return res.json(oldTag);
+        const data = {
+          data: oldTag,
+          message: "创建成功"
+        }
+        return res.json(data);
       }
   
       // 之前没创建过则直接创建
-      const newTag = await Tag.create({ name });
-      res.json(newTag);
+      const newTag = await Tag.create({ tagName });
+      const data = {
+        data: newTag,
+        message: "创建成功"
+      }
+      res.json(data);
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -45,14 +56,14 @@ async function createTag(req, res) {
         attributes: { exclude: ["isDeleted"] },
       });
       const data ={
-        tags: tags
+        list: tags
       }
       res.json({data: data});
     } catch (error) {
         // console.log(error);
       res.status(500).json({ error: error.message });
     }
-  } 
+  }; 
 
 module.exports = {
     createTag,

@@ -37,7 +37,7 @@ async function register(req, res) {
           message: 'Invalid username or password',
           status: 401
         }
-        return res.status(401).json({data: data});
+        return res.status(401).json( data);
       }
   
       // 检查密码是否匹配
@@ -47,7 +47,7 @@ async function register(req, res) {
           message: 'Invalid username or password',
           status: 401
         }
-        return res.status(401).json({data: data});
+        return res.status(401).json( data);
       }
   
       // 更新用户的最后在线时间
@@ -65,7 +65,7 @@ async function register(req, res) {
       }
   
       // 返回包含令牌、账号名和用户名的响应
-      res.json({data: data});
+      res.json( data);
     } catch (error) {
       res.status(500).json({ msg: "Failed to log in" });
     }
