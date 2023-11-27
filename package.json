@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "npm  run test",
+    "test": "pnpm  run test",
     "dev": "webpack-dev-server --config config/webpack.dev.js",
     "build": "webpack --config --config config/webpack.prod.js",
     "precommit": "lint-staged",
     "prettier": "prettier --write .",
-    "format": "npm run prettier && npm run lint-staged",
+    "format": "pnpm run prettier && pnpm run lint-staged",
     "lint-staged": "lint-staged"
   },
   "keywords": [],
