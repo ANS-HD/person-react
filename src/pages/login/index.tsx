@@ -24,7 +24,8 @@ const Index: React.FC = () => {
   return (
     <Pages>
 
-              <Form
+      
+      <Form
         form={form}
         name="login-form"
         initialValues={{ remember: true }}
