@@ -24,7 +24,6 @@ const Index: React.FC = () => {
   return (
     <Pages>
 
-
               <Form
         form={form}
         name="login-form"
