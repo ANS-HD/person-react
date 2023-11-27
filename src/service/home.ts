@@ -1,6 +1,6 @@
-import { Request } from "../utils";
+import { Request } from '../utils'
 
 export const userList = (params: any) =>
-  Request.get("/users/userList", {
+  Request.get('/users/userList', {
     params,
-  });
+  })

@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react'
 
 const Index: React.FC = () => {
-  console.log(111);
+  console.log(111)
 
-  return <div>about，关于我</div>;
-};
+  return <div>about，关于我</div>
+}
 
-export default Index;
+export default Index

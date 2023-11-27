@@ -1,49 +1,49 @@
-import React, { useEffect, useState } from "react";
-import { Layout, Menu } from "antd";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Outlet } from "react-router-dom";
-import { Headers } from "@/components";
+import React, { useEffect, useState } from 'react'
+import { Layout, Menu } from 'antd'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
+import { Headers } from '@/components'
 
-const { Content, Footer } = Layout;
+const { Content, Footer } = Layout
 
 function Index() {
-  const location = useLocation();
-  const navigate = useNavigate();
+  const location = useLocation()
+  const navigate = useNavigate()
   const headerStyle: React.CSSProperties = {
-    textAlign: "center",
-    color: "#ddd",
+    textAlign: 'center',
+    color: '#ddd',
     height: 64,
     paddingInline: 50,
-    lineHeight: "64px",
-    backgroundColor: "#ddd",
-  };
+    lineHeight: '64px',
+    backgroundColor: '#ddd',
+  }
 
   const contentStyle: React.CSSProperties = {
-    textAlign: "center",
+    textAlign: 'center',
     minHeight: 120,
-    lineHeight: "120px",
-    color: "#fff",
-    backgroundColor: "#fff",
-  };
+    lineHeight: '120px',
+    color: '#fff',
+    backgroundColor: '#fff',
+  }
 
   const siderStyle: React.CSSProperties = {
-    textAlign: "center",
-    lineHeight: "120px",
-    color: "#fff",
-    backgroundColor: "#3ba0e9",
-  };
+    textAlign: 'center',
+    lineHeight: '120px',
+    color: '#fff',
+    backgroundColor: '#3ba0e9',
+  }
 
   const footerStyle: React.CSSProperties = {
-    textAlign: "center",
-    color: "#fff",
-    backgroundColor: "#eee",
-  };
+    textAlign: 'center',
+    color: '#fff',
+    backgroundColor: '#eee',
+  }
 
-  const [check, setCheck] = useState(location.pathname);
+  const [check, setCheck] = useState(location.pathname)
 
   useEffect(() => {
-    setCheck(location.pathname);
-  }, [location.pathname]);
+    setCheck(location.pathname)
+  }, [location.pathname])
 
   return (
     <Layout>
@@ -52,15 +52,15 @@ function Index() {
           <Link
             to="/home"
             className={`text-sm font-semibold  leading-full py-2 px-4 ${
-              check === "/home" && "bg-blue"
+              check === '/home' && 'bg-blue'
             }`}
           >
-            博客主页{" "}
+            博客主页{' '}
           </Link>
           <Link
             to="/about"
             className={`text-sm font-semibold  leading-full py-2 px-4 ${
-              check === "/about" && "bg-blue"
+              check === '/about' && 'bg-blue'
             }`}
           >
             所有文章
@@ -68,7 +68,7 @@ function Index() {
           <Link
             to="/label"
             className={`text-sm font-semibold  leading-full py-2 px-6 ${
-              check === "/label" && "bg-blue"
+              check === '/label' && 'bg-blue'
             }`}
           >
             标签
@@ -78,7 +78,7 @@ function Index() {
           <Link
             to="/user"
             className={`text-sm font-semibold  leading-full py-2 px-6 ${
-              check === "/user" && "bg-blue"
+              check === '/user' && 'bg-blue'
             }`}
           >
             我的
@@ -89,7 +89,7 @@ function Index() {
         <Outlet />
       </Content>
     </Layout>
-  );
+  )
 }
 
-export default Index;
+export default Index

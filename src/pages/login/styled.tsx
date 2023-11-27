@@ -1,3 +1,3 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
-export const Pages = styled.div``;
+export const Pages = styled.div``

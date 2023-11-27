@@ -9,60 +9,60 @@
     <script>
       // myPromise
       class MyPromise {
-        static PENDING = "pending";
-        static REJECTED = "rejected";
-        static FULFILLED = "fufilled";
+        static PENDING = 'pending'
+        static REJECTED = 'rejected'
+        static FULFILLED = 'fufilled'
 
         constructor(executor) {
-          this.status = Promise.PENDING;
-          this.value = undefined;
-          this.reason = undefined;
+          this.status = Promise.PENDING
+          this.value = undefined
+          this.reason = undefined
 
-          this.onFulfilledCallBacks = [];
-          this.onRejectedCallBacks = [];
+          this.onFulfilledCallBacks = []
+          this.onRejectedCallBacks = []
 
           //d     定义resolve
           const resolve = (v) => {
             if (this.status === Promise.PENDING) {
-              this.status === Promise.FULFILLED;
-              this.value = v;
+              this.status === Promise.FULFILLED
+              this.value = v
             }
-          };
+          }
 
           // 定义reject
           const reject = (reason) => {
             if (this.status === Promise.PENDING) {
-              this.status = Promise.REJECTED;
-              this.reason = reason;
+              this.status = Promise.REJECTED
+              this.reason = reason
             }
-          };
+          }
           try {
-            executor(resolve, reject);
+            executor(resolve, reject)
           } catch (error) {
-            reject(error);
+            reject(error)
           }
         }
         then(onFulfilled, onRejected) {
           if (this.status === Promise.FULFILLED) {
-            onFulfilled(this.value);
+            onFulfilled(this.value)
           }
           if (this.status === Promise.REJECTED) {
-            onRejected(this.reason);
+            onRejected(this.reason)
           }
           if (this.status === Promise.PENDING) {
-            this.onFulfilledCallBacks.push(() => onFulfilled(this.value));
-            this.onRejectedCallBacks.push(() => onRejected(this.reason));
+            this.onFulfilledCallBacks.push(() => onFulfilled(this.value))
+            this.onRejectedCallBacks.push(() => onRejected(this.reason))
           }
         }
       }
 
       const promise1 = new MyPromise((resolve, reject) => {
         setTimeout(() => {
-          console.log("2000");
-          resolve(2000);
-        }, 2000);
-        resolve(1);
-      });
+          console.log('2000')
+          resolve(2000)
+        }, 2000)
+        resolve(1)
+      })
     </script>
   </body>
 </html>

@@ -1,16 +1,16 @@
-import React from "react";
-import { Navigate } from "react-router-dom";
-import Index from "./pages/index";
+import React from 'react'
+import { Navigate } from 'react-router-dom'
+import Index from './pages/index'
 
 export default [
   {
-    path: "/blog",
+    path: '/blog',
     element: <Navigate to="/blog/index" />,
     children: [
       {
-        path: "index",
+        path: 'index',
         element: <Index />,
       },
     ],
   },
-];
+]

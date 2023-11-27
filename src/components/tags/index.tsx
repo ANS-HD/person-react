@@ -1,19 +1,19 @@
-import { tags } from "@/service";
-import { useRequest } from "ahooks";
-import { message } from "antd";
-import React from "react";
+import { tags } from '@/service'
+import { useRequest } from 'ahooks'
+import { message } from 'antd'
+import React from 'react'
 
 type Props = {
-  onChange?: (value: string) => void;
-};
+  onChange?: (value: string) => void
+}
 
 const Index: React.FC<Props> = (props) => {
   const tagsList = useRequest(() => tags(), {
     onSuccess: (res) => {
-      console.log("ress", res.data.list);
+      console.log('ress', res.data.list)
     },
     onError: (err) => message.error(err.message),
-  });
+  })
 
   return (
     <div className="">
@@ -28,12 +28,12 @@ const Index: React.FC<Props> = (props) => {
               >
                 {item.tagName}
               </p>
-            );
+            )
           })}
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

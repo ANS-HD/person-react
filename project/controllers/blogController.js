@@ -1,8 +1,8 @@
-const Blog = require("../models/Blog");
+const Blog = require('../models/Blog')
 
 async function createBlog(req, res) {
   try {
-    const { title, content, coverImage, tags } = req.body;
+    const { title, content, coverImage, tags } = req.body
 
     //   // 查询标签是否存在
     //   const existingTags = await Tag.findAll({
@@ -21,14 +21,14 @@ async function createBlog(req, res) {
       // 在鉴权中间件中我们挂载了用户信息在 req 中
       userId: req.user.userId,
       isDeleted: false,
-    });
+    })
 
     // 关联标签和博客
-    await newBlog.setTags(existingTags);
+    await newBlog.setTags(existingTags)
 
     // 返回创建的博客记录
-    res.json(newBlog);
+    res.json(newBlog)
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error.message })
   }
 }
