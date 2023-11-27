@@ -8,7 +8,8 @@
     "build": "webpack --config --config config/webpack.prod.js",
     "precommit": "lint-staged",
     "prettier": "prettier --write .",
-    "format": "npm run prettier && npm run lint-staged"
+    "format": "npm run prettier && npm run lint-staged",
+    "lint-staged": "lint-staged"
   },
   "keywords": [],
   "author": "",
