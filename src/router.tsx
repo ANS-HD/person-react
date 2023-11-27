@@ -8,8 +8,7 @@ import User from "./pages/user";
 import Login from "@/pages/login";
 import Layout from "./layout";
 
-
-const routes: (RouteObject&{auth?: boolean})[] = [
+const routes: (RouteObject & { auth?: boolean })[] = [
   {
     path: "/",
     element: <Navigate to="/home" />,
@@ -32,14 +31,14 @@ const routes: (RouteObject&{auth?: boolean})[] = [
       {
         path: "/user",
         element: <User />,
-        // 
-        index: true
+        //
+        index: true,
       },
       {
         path: "/login",
         element: <Login />,
-        // 
-        index: true
+        //
+        index: true,
       },
     ],
   },

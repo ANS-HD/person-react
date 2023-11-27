@@ -1,5 +1,5 @@
 const { DataTypes, Model } = require("sequelize");
-const sequelize  = require("../config/db.config")
+const sequelize = require("../config/db.config");
 const User = require("./user");
 const Tag = require("./tag");
 
@@ -31,7 +31,7 @@ Blog.init(
   {
     sequelize,
     modelName: "Blog",
-  }
+  },
 );
 
 // 一篇博客可以对应多个标签

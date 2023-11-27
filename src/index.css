@@ -2,12 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
-    padding: 0;
-    margin: 0;
-    background: #fff;
-  }
-  
-  #root {
-    padding: 12px;
-  }
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background: #fff;
+}
+
+#root {
+  padding: 12px;
+}

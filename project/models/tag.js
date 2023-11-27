@@ -1,7 +1,7 @@
 const { DataTypes, Model } = require("sequelize");
-const sequelize  = require("../config/db.config")
+const sequelize = require("../config/db.config");
 class Tag extends Model {}
-const { Sequelize } = require("sequelize")
+const { Sequelize } = require("sequelize");
 
 Tag.init(
   {
@@ -22,8 +22,7 @@ Tag.init(
     sequelize,
     modelName: "Tag",
     timestamps: false, // 禁用自动生成的 createdAt 和 updatedAt 列
-  }
+  },
 );
-
 
 module.exports = Tag;
