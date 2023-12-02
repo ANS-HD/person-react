@@ -31,13 +31,12 @@ const routes: (RouteObject & { auth?: boolean })[] = [
       {
         path: '/user',
         element: <User />,
-        //
         index: true,
       },
       {
         path: '/login',
         element: <Login />,
-        //
+        // 需要token验证
         index: true,
       },
     ],

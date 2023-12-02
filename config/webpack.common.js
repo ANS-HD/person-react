@@ -32,7 +32,7 @@ module.exports = {
   //webpack 输出文件配置
   output: {
     //输出文件路径
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '../dist'),
     //输出文件名
     filename: 'index.js',
     clean: true, //每次打包前清空目录

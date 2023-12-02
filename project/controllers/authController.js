@@ -32,7 +32,7 @@ async function login(req, res) {
     const user = await User.findOne({ where: { username } })
     if (!user) {
       const data = {
-        message: 'Invalid username or password',
+        message: '账号或密码错误！！！',
         status: 401,
       }
       return res.status(401).json(data)
@@ -42,7 +42,7 @@ async function login(req, res) {
     const isPasswordMatch = await bcrypt.compare(password, user.password)
     if (!isPasswordMatch) {
       const data = {
-        message: 'Invalid username or password',
+        message: '账号或密码错误！！！',
         status: 401,
       }
       return res.status(401).json(data)

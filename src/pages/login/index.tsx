@@ -10,7 +10,10 @@ const Index: React.FC = () => {
   const navigate = useNavigate()
 
   const login = useRequest(userLogin, {
-    onError: (err) => message.error(err.message),
+    onError: (err) => {
+      console.log('err', err);
+      
+      message.error(err.message)},
     onSuccess: (res) => {
       localStorage.setItem('Token', res.data.token)
       message.success('登陆成功!')
@@ -46,9 +49,10 @@ const Index: React.FC = () => {
           <Input.Password placeholder="密码" />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="w-full">
+          <Button type="primary" htmlType="submit" style={{ marginRight: '20px'}} >
             登录
           </Button>
+          <Button>注册</Button>
         </Form.Item>
       </Form>
     </Pages>

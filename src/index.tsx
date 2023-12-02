@@ -9,18 +9,16 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
   <BrowserRouter>
-    <React.StrictMode>
       <ConfigProvider
         theme={{
-          algorithm: theme.defaultAlgorithm,
+          // algorithm: theme.defaultAlgorithm,
           token: {
-            colorPrimary: '#6492a6',
-            colorBgBase: '#ffffff',
+            // colorPrimary: '#24aee9',
+            // colorBgBase: '#ffffff',
           },
         }}
       >
         <App />
       </ConfigProvider>
-    </React.StrictMode>
   </BrowserRouter>,
 )

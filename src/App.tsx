@@ -25,16 +25,18 @@ const Index: React.FC = () => {
     defaultValue: false,
   })
 
-  function searchRouteDetail(
-    path: string,
-    routes: RouteObject[],
-  ): RouteObject | null {
+  function searchRouteDetail(path: string, routes: RouteObject[]): RouteObject | null {
     for (let item of routes) {
-      if (item.path === path) return item
+      if (item.path === path) return item;
       if (item.children) {
-        return searchRouteDetail(path, item.children)
+        const result = searchRouteDetail(path, item.children);
+        if (result !== null) {
+          return result;  // 如果找到了子路由，就返回结果，否则继续查找其他子路由
+        }
       }
     }
+  
+    return null; // 如果在当前路由和所有子路由中都没有找到匹配的路径，则返回null
   }
 
   //全局路由守卫
@@ -43,6 +45,7 @@ const Index: React.FC = () => {
     navigate: NavigateFunction, //类型在react-router-dom中导入
     routes: RouteObject[],
   ) {
+    
     //找到对应的路由信息，判断有没有权限控制
     const routeDetail = searchRouteDetail(pathname, routes)
 
@@ -57,7 +60,7 @@ const Index: React.FC = () => {
       const token = localStorage.getItem('blogtoken')
 
       if (!token) {
-        message.error('请登录')
+        message.error('请先登录或者注册')
         navigate('/login')
         return false
       }
@@ -66,6 +69,7 @@ const Index: React.FC = () => {
   }
 
   useEffect(() => {
+    
     setIsAuth(guard(location.pathname, navigate, routes))
   }, [location.pathname])
 

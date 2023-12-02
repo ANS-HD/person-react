@@ -1,5 +1,6 @@
 import { Button, Form, Input } from 'antd'
 import React from 'react'
+import { Component } from './styled'
 
 const Index: React.FC = () => {
   const [form] = Form.useForm()
@@ -7,9 +8,10 @@ const Index: React.FC = () => {
     console.log('Received values:', values)
   }
   return (
-    <div className="flex h-full items-center justify-center">
-      <div className="w-1/3  p-8 shadow-lg rounded-lg">
-        <h2 className="text-2xl font-semibold mb-4">登录</h2>
+    // <div className="flex h-full items-center justify-center">
+    //   <div className="w-1/3  p-8 shadow-lg rounded-lg">
+    //     <h2 className="text-2xl font-semibold mb-4">登录</h2>
+    <Component>
         <Form
           form={form}
           name="login-form"
@@ -36,8 +38,9 @@ const Index: React.FC = () => {
             </Button>
           </Form.Item>
         </Form>
-      </div>
-    </div>
+    </Component>
+    //   </div>
+    // </div>
   )
 }
 

@@ -5,6 +5,7 @@
   "scripts": {
     "test": "pnpm  run test",
     "dev": "webpack-dev-server --config config/webpack.dev.js",
+    "build:test": "webpack --config config/webpack.dev.js",
     "build": "webpack --config --config config/webpack.prod.js",
     "precommit": "lint-staged",
     "prettier": "prettier --write .",
@@ -16,6 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
+    "@ant-design/pro-components": "^2.6.43",
     "ahooks": "^3.7.8",
     "antd": "^5.11.0",
     "axios": "^1.6.0",

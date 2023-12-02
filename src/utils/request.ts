@@ -38,7 +38,7 @@ instance.interceptors.response.use(
     //   // 2.跳转登录页
     //   router.push('/login')
     // }
-    return Promise.reject(error)
+    return Promise.reject(error.response.data)
   },
 )
 
