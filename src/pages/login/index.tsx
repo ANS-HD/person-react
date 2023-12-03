@@ -15,6 +15,8 @@ const Index: React.FC = () => {
       
       message.error(err.message)},
     onSuccess: (res) => {
+      console.log('res', res);
+      
       localStorage.setItem('Token', res.data.token)
       message.success('登陆成功!')
       navigate('/home')
@@ -52,7 +54,7 @@ const Index: React.FC = () => {
           <Button type="primary" htmlType="submit" style={{ marginRight: '20px'}} >
             登录
           </Button>
-          <Button>注册</Button>
+          <Button onClick={()=>navigate('/register')}>注册</Button>
         </Form.Item>
       </Form>
     </Pages>

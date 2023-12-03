@@ -7,6 +7,7 @@ import Label from './pages/label'
 import User from './pages/user'
 import Login from '@/pages/login'
 import Layout from './layout'
+import Register from '@/pages/register'
 
 const routes: (RouteObject & { auth?: boolean })[] = [
   {
@@ -38,6 +39,11 @@ const routes: (RouteObject & { auth?: boolean })[] = [
         element: <Login />,
         // 需要token验证
         index: true,
+      },
+      {
+        path: '/register',
+        element: <Register />,
+
       },
     ],
   },

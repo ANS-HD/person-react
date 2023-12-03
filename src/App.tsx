@@ -57,7 +57,7 @@ const Index: React.FC = () => {
     }
     //如果需要权限验证
     if (routeDetail.index) {
-      const token = localStorage.getItem('blogtoken')
+      const token = localStorage.getItem('Token')
 
       if (!token) {
         message.error('请先登录或者注册')
