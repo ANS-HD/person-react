@@ -7,7 +7,7 @@ const webpack = require('webpack');
 module.exports = merge(base, {
    //模块参数
     mode: 'development',
-//启用source-map方便调试
+  //启用source-map方便调试
     devtool: 'source-map',
     plugins: [
         // new BundleAnalyzerPlugin()
