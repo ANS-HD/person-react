@@ -1,5 +1,4 @@
-import { useRequest } from '@/hooks'
-import { useNavigate } from '@/hooks'
+import { useRequest, useNavigate } from '@/hooks'
 import { Button, Form, Input, message } from 'antd'
 import React from 'react'
 import { userLogin } from '@/service'
@@ -11,12 +10,13 @@ const Index: React.FC = () => {
 
   const login = useRequest(userLogin, {
     onError: (err) => {
-      console.log('err', err);
-      
-      message.error(err.message)},
+      console.log('err', err)
+
+      message.error(err.message)
+    },
     onSuccess: (res) => {
-      console.log('res', res);
-      
+      console.log('res', res)
+
       localStorage.setItem('Token', res.data.token)
       message.success('登陆成功!')
       navigate('/home')
@@ -28,8 +28,6 @@ const Index: React.FC = () => {
   }
   return (
     <Pages>
-
-      
       <Form
         form={form}
         name="login-form"
@@ -51,10 +49,14 @@ const Index: React.FC = () => {
           <Input.Password placeholder="密码" />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" style={{ marginRight: '20px'}} >
+          <Button
+            type="primary"
+            htmlType="submit"
+            style={{ marginRight: '20px' }}
+          >
             登录
           </Button>
-          <Button onClick={()=>navigate('/register')}>注册</Button>
+          <Button onClick={() => navigate('/register')}>注册</Button>
         </Form.Item>
       </Form>
     </Pages>

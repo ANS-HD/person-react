@@ -25,18 +25,21 @@ const Index: React.FC = () => {
     defaultValue: false,
   })
 
-  function searchRouteDetail(path: string, routes: RouteObject[]): RouteObject | null {
+  function searchRouteDetail(
+    path: string,
+    routes: RouteObject[],
+  ): RouteObject | null {
     for (let item of routes) {
-      if (item.path === path) return item;
+      if (item.path === path) return item
       if (item.children) {
-        const result = searchRouteDetail(path, item.children);
+        const result = searchRouteDetail(path, item.children)
         if (result !== null) {
-          return result;  // 如果找到了子路由，就返回结果，否则继续查找其他子路由
+          return result // 如果找到了子路由，就返回结果，否则继续查找其他子路由
         }
       }
     }
-  
-    return null; // 如果在当前路由和所有子路由中都没有找到匹配的路径，则返回null
+
+    return null // 如果在当前路由和所有子路由中都没有找到匹配的路径，则返回null
   }
 
   //全局路由守卫
@@ -45,22 +48,18 @@ const Index: React.FC = () => {
     navigate: NavigateFunction, //类型在react-router-dom中导入
     routes: RouteObject[],
   ) {
-    
     //找到对应的路由信息，判断有没有权限控制
     const routeDetail = searchRouteDetail(pathname, routes)
 
     //没有找到路由，跳转404
     if (!routeDetail) {
-      console.log(routeDetail, location.pathname)
-      //  navigate("/404");
+      navigate('/404')
       return false
     }
     //如果需要权限验证
     if (routeDetail.index) {
       const token = localStorage.getItem('Token')
-
       if (!token) {
-        message.error('请先登录或者注册')
         navigate('/login')
         return false
       }
@@ -69,7 +68,6 @@ const Index: React.FC = () => {
   }
 
   useEffect(() => {
-    
     setIsAuth(guard(location.pathname, navigate, routes))
   }, [location.pathname])
 
@@ -80,9 +78,3 @@ const Index: React.FC = () => {
 
 export default Index
 
-// function App() {
-//   const GetRoutes = () => useRoutes(routes);
-//   return <GetRoutes/>;
-// }
-
-// export default App;

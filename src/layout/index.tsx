@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Layout, Menu } from 'antd'
+import { Layout } from 'antd'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Outlet } from 'react-router-dom'
 import { Headers } from '@/components'
@@ -46,21 +46,21 @@ function Index() {
   }, [location.pathname])
 
   return (
-    <Layout>
-      <header className="bg-gray text-white  flex justify-center items-center px-6">
-        <div className="hidden  lg:flex lg:gap-x-12">
+    <Layout style={{ borderRadius: 8, minHeight: '100vh' }}>
+      <div className="bg-purple text-white  flex justify-center items-center p-2 ">
+        <div>
           <Link
             to="/home"
             className={`text-sm font-semibold  leading-full py-2 px-4 ${
-              check === '/home' && 'bg-blue'
+              check === '/home' && 'bg-purple'
             }`}
           >
-            博客主页{' '}
+            博客主页
           </Link>
           <Link
             to="/about"
             className={`text-sm font-semibold  leading-full py-2 px-4 ${
-              check === '/about' && 'bg-blue'
+              check === '/about' && 'bg-purple'
             }`}
           >
             所有文章
@@ -68,7 +68,7 @@ function Index() {
           <Link
             to="/label"
             className={`text-sm font-semibold  leading-full py-2 px-6 ${
-              check === '/label' && 'bg-blue'
+              check === '/label' && 'bg-purple'
             }`}
           >
             标签
@@ -78,14 +78,14 @@ function Index() {
           <Link
             to="/user"
             className={`text-sm font-semibold  leading-full py-2 px-6 ${
-              check === '/user' && 'bg-blue'
+              check === '/user' && 'bg-purple'
             }`}
           >
             我的
           </Link>
         </div>
-      </header>
-      <Content className="pt-2 bg-gray-g">
+      </div>
+      <Content className="pt-2 bg-bgColor">
         <Outlet />
       </Content>
     </Layout>

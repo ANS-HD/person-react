@@ -15,8 +15,6 @@ const defaultRecords = {
 }
 
 const Index: React.FC = () => {
-  console.log('home')
-  const a = 1
   const res = useRequest(() => userList({ name: 'name1' }), {
     onSuccess: (res) => {},
     manual: true,
@@ -40,8 +38,8 @@ const Index: React.FC = () => {
     createTag.run({ tagName: value })
 
   return (
-    <div className="container w-full mt-2 mb-2">
-      <div className=" container flex justify-between items-center w-full mb-2">
+    <div className="container w-full mt-2 mb-2 p-4">
+      <div className=" container flex justify-between items-center w-full mb-2 ">
         <Search
           style={{ width: 300 }}
           placeholder="请输入关键字进行搜索"
