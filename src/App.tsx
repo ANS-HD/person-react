@@ -24,13 +24,19 @@ const Index: React.FC = () => {
   const [, setIsAuth] = useLocalStorageState<boolean>('auth', {
     defaultValue: false,
   })
+console.log(routes);
+
 
   function searchRouteDetail(
     path: string,
     routes: RouteObject[],
   ): RouteObject | null {
     for (let item of routes) {
-      if (item.path === path) return item
+      console.log(item.path, path);
+
+      if (item.path === path) {
+        debugger
+        return item}
       if (item.children) {
         const result = searchRouteDetail(path, item.children)
         if (result !== null) {
@@ -68,6 +74,8 @@ const Index: React.FC = () => {
   }
 
   useEffect(() => {
+    console.log(location.pathname, routes);
+    
     setIsAuth(guard(location.pathname, navigate, routes))
   }, [location.pathname])
 

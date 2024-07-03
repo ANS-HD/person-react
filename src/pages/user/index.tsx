@@ -6,7 +6,7 @@ const Index: React.FC = () => {
   return <Pages>
 
     {
-      localStorage.getItem('Token')? <></>:
+      localStorage.getItem('Token')? <>12321</>:
       <Sign />
     }
   </Pages>

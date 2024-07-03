@@ -1,11 +1,12 @@
 import React from 'react'
-import { useRequest } from '@/hooks'
+import { useRequest, useNavigate } from '@/hooks'
 import { Request } from '@/utils'
 import { userList } from '@/service/home'
 import { Input, Space, Tag, message } from 'antd'
 import { SearchProps } from 'antd/es/input'
 import { tags, createTags } from '@/service'
 import { Tags } from '@/components'
+
 
 const { Search } = Input
 
@@ -15,6 +16,7 @@ const defaultRecords = {
 }
 
 const Index: React.FC = () => {
+  const navigate = useNavigate()
   const res = useRequest(() => userList({ name: 'name1' }), {
     onSuccess: (res) => {},
     manual: true,
@@ -31,7 +33,7 @@ const Index: React.FC = () => {
 
   const onChange = (v: string) => {
     // ?根据tag更新列表
-    console.log(v)
+    navigate('/blog/index')
   }
 
   const onSearch: SearchProps['onSearch'] = (value: string) =>

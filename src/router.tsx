@@ -16,9 +16,10 @@ const routes: (RouteObject & { auth?: boolean })[] = [
   },
   {
     path: '/',
-    element: <Navigate to="/home" />,
+    element: <Navigate to="/home"  replace/>,
   },
   {
+    path:'/',
     element: <Layout />,
     children: [
       {
@@ -48,9 +49,10 @@ const routes: (RouteObject & { auth?: boolean })[] = [
         path: '/register',
         element: <Register />,
       },
+      ...blogRouters
     ],
   },
-  ...blogRouters,
+ ,
 ]
 
 export default routes

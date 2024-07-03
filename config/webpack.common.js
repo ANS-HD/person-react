@@ -36,6 +36,11 @@ module.exports = {
     //输出文件名
     filename: 'index.js',
     clean: true, //每次打包前清空目录
+    library: {
+      name: 'Modal',
+      type: 'var',
+      export: 'default',
+    },
   },
   resolve: {
     alias: {
@@ -51,7 +56,12 @@ module.exports = {
       //模板文件路径
       template: './public/index.html',
       //模板文件名
-      // filename: "index.html",
+      filename: 'index.html',
+      inject: 'body', // Inject script tags into body or head
+      scriptLoading: 'blocking', // Ensure scripts are loaded in order
+      scriptAttributes: {
+        type: 'text/javascript', // Add type="text/javascript" to script tags
+      },
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[hash].css',
