@@ -26,6 +26,9 @@ dependencies:
   esbuild-loader:
     specifier: ^3.2.0
     version: 3.2.0(webpack@5.92.1)
+  express:
+    specifier: ^4.19.2
+    version: 4.19.2
   react:
     specifier: ^18.3.1
     version: 18.3.1

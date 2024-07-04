@@ -24,22 +24,19 @@ const Index: React.FC = () => {
   const [, setIsAuth] = useLocalStorageState<boolean>('auth', {
     defaultValue: false,
   })
-console.log(routes);
-
 
   function searchRouteDetail(
     path: string,
     routes: RouteObject[],
   ): RouteObject | null {
     for (let item of routes) {
-      console.log(item.path, path);
-
-      if (item.path === path) {
-        debugger
-        return item}
-      if (item.children) {
+      console.log(item?.path, path)
+      if (item?.path === path) {
+        return item
+      }
+      if (item?.children) {
         const result = searchRouteDetail(path, item.children)
-        if (result !== null) {
+        if (result !== path) {
           return result // 如果找到了子路由，就返回结果，否则继续查找其他子路由
         }
       }
@@ -56,6 +53,7 @@ console.log(routes);
   ) {
     //找到对应的路由信息，判断有没有权限控制
     const routeDetail = searchRouteDetail(pathname, routes)
+    console.log('routeDetail', routeDetail)
 
     //没有找到路由，跳转404
     if (!routeDetail) {
@@ -74,8 +72,8 @@ console.log(routes);
   }
 
   useEffect(() => {
-    console.log(location.pathname, routes);
-    
+    console.log(location.pathname, routes)
+
     setIsAuth(guard(location.pathname, navigate, routes))
   }, [location.pathname])
 
@@ -85,4 +83,3 @@ console.log(routes);
 }
 
 export default Index
-

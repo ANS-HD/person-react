@@ -11,15 +11,19 @@ import Register from '@/pages/register'
 
 const routes: (RouteObject & { auth?: boolean })[] = [
   {
-    path: '/404',
+    path: '*',
     element: <>404 Not Found!</>,
+  },
+  // {
+  //   path: '/404',
+  //   element: <>404 Not Found!</>,
+  // },
+  {
+    path: '/',
+    element: <Navigate to="/home" replace />,
   },
   {
     path: '/',
-    element: <Navigate to="/home"  replace/>,
-  },
-  {
-    path:'/',
     element: <Layout />,
     children: [
       {
@@ -49,10 +53,9 @@ const routes: (RouteObject & { auth?: boolean })[] = [
         path: '/register',
         element: <Register />,
       },
-      ...blogRouters
+      ...blogRouters,
     ],
   },
- ,
 ]
 
 export default routes
