@@ -1,12 +1,13 @@
 import React from 'react'
 import { useRequest, useNavigate } from '@/hooks'
+import { Header } from '@/components'
 import { Request } from '@/utils'
 import { userList } from '@/service/home'
 import { Input, Space, Tag, message } from 'antd'
 import { SearchProps } from 'antd/es/input'
+import ReactMarkdown from 'react-markdown'
 import { tags, createTags } from '@/service'
 import { Tags } from '@/components'
-
 
 const { Search } = Input
 
@@ -36,13 +37,16 @@ const Index: React.FC = () => {
     navigate('/blog/index')
   }
 
-  const onSearch: SearchProps['onSearch'] = (value: string) =>
+  const onSearch = (value: string) => {
     createTag.run({ tagName: value })
+  }
 
   return (
     <div className="container w-full mt-2 mb-2">
-      <div className=" container flex justify-between items-center w-full mb-2 ">
-        <Tags onChange={onChange} />
+      <div className="container  w-full mb-2 ">
+        <Header onSearch={onSearch} isHide={false} />
+        {/* <Tags onChange={onChange} /> */}
+        <ReactMarkdown>*React-Markdown* is **Awesome**</ReactMarkdown>
       </div>
     </div>
   )
