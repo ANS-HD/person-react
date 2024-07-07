@@ -12,7 +12,7 @@ const Index: React.FC<Props> = (props) => {
   const location = useLocation()
   const [check, setCheck] = useState(location.pathname)
   return (
-    <div className="bg-white   flex  items-center p-2 ">
+    <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center gap-2">
       <div className="w-auto">
         <Link
           to="/home"
@@ -22,7 +22,7 @@ const Index: React.FC<Props> = (props) => {
         </Link>
       </div>
       {!props.isHide && (
-        <div className="ml-96 flex-1 mr-auto">
+        <div className=" flex-1 mr-auto">
           {' '}
           <Search
             style={{ width: 300 }}
@@ -33,7 +33,7 @@ const Index: React.FC<Props> = (props) => {
           />
         </div>
       )}
-      <div className=" w-auto hidden lg:flex lg:flex-1 lg:justify-end">
+      <div className=" w-auto hidden md:flex md:flex-1 md:justify-end">
         <Link
           to="/home"
           className={`text-sm font-semibold  leading-full py-2 px-4 `}
@@ -57,7 +57,7 @@ const Index: React.FC<Props> = (props) => {
           我的
         </Link>
       </div>
-    </div>
+    </nav>
   )
 }
 
