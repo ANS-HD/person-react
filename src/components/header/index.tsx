@@ -12,7 +12,7 @@ const Index: React.FC<Props> = (props) => {
   const location = useLocation()
   const [check, setCheck] = useState(location.pathname)
   return (
-    <div className="bg-white   flex  items-center p-2 ">
+    <div className="bg-white flex  items-center p-2 border-b-2 border-indigo-500/100">
       <div className="w-auto">
         <Link
           to="/home"

@@ -14,10 +14,6 @@ const routes: (RouteObject & { auth?: boolean })[] = [
     path: '*',
     element: <>404 Not Found!</>,
   },
-  // {
-  //   path: '/404',
-  //   element: <>404 Not Found!</>,
-  // },
   {
     path: '/',
     element: <Navigate to="/home" replace />,
