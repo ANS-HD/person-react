@@ -49,6 +49,14 @@ const routes: (RouteObject & { auth?: boolean })[] = [
         path: '/register',
         element: <Register />,
       },
+      // {
+      //   path: '/blog/index',
+      //   element: <Index />,
+      // },
+      // {
+      //   path: '/blog/my',
+      //   element: <My />,
+      // },
       ...blogRouters,
     ],
   },

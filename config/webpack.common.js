@@ -33,6 +33,7 @@ module.exports = {
   output: {
     //输出文件路径
     path: path.resolve(__dirname, '../dist'),
+    publicPath: '/',
     //输出文件名
     filename: 'index.js',
     clean: true, //每次打包前清空目录
