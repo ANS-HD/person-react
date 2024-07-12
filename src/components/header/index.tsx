@@ -12,7 +12,7 @@ const Index: React.FC<Props> = (props) => {
   const location = useLocation()
   const [check, setCheck] = useState(location.pathname)
   return (
-    <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center gap-2">
+    <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center gap-2 m-2 w-full">
       <div className="w-auto">
         <Link
           to="/home"
@@ -55,6 +55,14 @@ const Index: React.FC<Props> = (props) => {
           }`}
         >
           我的
+        </Link>
+        <Link
+          to="/create"
+          className={`text-sm font-semibold  leading-full py-2 px-6 ${
+            check === '/create'
+          }`}
+        >
+          创作中心
         </Link>
       </div>
     </nav>

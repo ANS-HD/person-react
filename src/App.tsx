@@ -72,8 +72,6 @@ const Index: React.FC = () => {
   }
 
   useEffect(() => {
-    console.log(location.pathname, routes)
-
     setIsAuth(guard(location.pathname, navigate, routes))
   }, [location.pathname])
 

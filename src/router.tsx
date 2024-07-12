@@ -7,6 +7,7 @@ import Label from './pages/label'
 import User from './pages/user'
 import Login from '@/pages/login'
 import Layout from './layout'
+import Create from '@/pages/create'
 import Register from '@/pages/register'
 
 const routes: (RouteObject & { auth?: boolean })[] = [
@@ -33,6 +34,11 @@ const routes: (RouteObject & { auth?: boolean })[] = [
       {
         path: '/label',
         element: <Label />,
+      },
+      {
+        path: '/create',
+        element: <Create />,
+        index: true,
       },
       {
         path: '/user',

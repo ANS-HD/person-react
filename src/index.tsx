@@ -11,14 +11,14 @@ root.render(
   <BrowserRouter>
     <ConfigProvider
       theme={{
-        // algorithm: theme.defaultAlgorithm,
         token: {
           colorPrimary: '#dbacf9',
-          // colorBgBase: '#ffffff',
         },
       }}
     >
-      <App />
+      <div className="md:m-auto max-w-screen-lg bg-white">
+        <App />
+      </div>
     </ConfigProvider>
   </BrowserRouter>,
 )
