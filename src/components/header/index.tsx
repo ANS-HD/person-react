@@ -12,7 +12,10 @@ const Index: React.FC<Props> = (props) => {
   const location = useLocation()
   const [check, setCheck] = useState(location.pathname)
   return (
-    <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center gap-2 m-2 w-full">
+    <nav
+      className="md:ml-auto md:mr-auto flex flex-wrap bg-lightPurple items-center text-base justify-center gap-2 w-full"
+      style={{ height: 48 }}
+    >
       <div className="w-auto">
         <Link
           to="/home"

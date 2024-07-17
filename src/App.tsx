@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import {
   useLocalStorageState,
   useLocation,
@@ -77,7 +77,11 @@ const Index: React.FC = () => {
 
   const Route = () => useRoutes(routes)
 
-  return <Route />
+  return (
+    <Suspense fallback={<div>Loading....</div>}>
+      <Route />
+    </Suspense>
+  )
 }
 
 export default Index

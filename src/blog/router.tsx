@@ -1,8 +1,8 @@
-import React, { Children } from 'react'
+import React, { lazy, Children } from 'react'
 import { Navigate } from 'react-router-dom'
 import Layout from '../layout'
-import Index from './pages/index'
-import My from './pages/my'
+
+const Index = lazy(() => import('./pages/index'))
 
 export default [
   //  {
@@ -12,10 +12,6 @@ export default [
   {
     path: '/blog/index',
     element: <Index />,
-  },
-  {
-    path: '/blog/my',
-    element: <My />,
   },
   //   ]
   //  }

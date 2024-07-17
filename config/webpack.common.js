@@ -33,9 +33,10 @@ module.exports = {
   output: {
     //输出文件路径
     path: path.resolve(__dirname, '../dist'),
+    filename: '[name].[contenthash].js',
+    clean: true,
     publicPath: '/',
     //输出文件名
-    filename: 'index.js',
     clean: true, //每次打包前清空目录
     library: {
       name: 'Modal',
@@ -70,6 +71,18 @@ module.exports = {
     // require('tailwindcss'),
     // PurgeCss(PurgeOptions),
   ],
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
+  },
 
   module: {
     rules: [

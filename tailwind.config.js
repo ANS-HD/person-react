@@ -9,6 +9,7 @@ module.exports = {
     },
     colors: {
       blue: '#1fb6ff',
+      lightPurple: '#e8cbfd',
       purple: '#dbacf9',
       bgColor: 'rgb(238 242 255)',
       pink: '#ff49db',
@@ -26,6 +27,9 @@ module.exports = {
       serif: ['Merriweather', 'serif'],
     },
     extend: {
+      height: {
+        '48px': '48px',
+      },
       spacing: {
         128: '32rem',
         144: '36rem',
