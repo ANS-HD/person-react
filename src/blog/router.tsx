@@ -2,7 +2,7 @@ import React, { lazy, Children } from 'react'
 import { Navigate } from 'react-router-dom'
 import Layout from '../layout'
 
-const Index = lazy(() => import('./pages/index'))
+const Index = lazy(() => import('./pages/index/index'))
 
 export default [
   //  {
