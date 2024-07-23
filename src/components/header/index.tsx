@@ -10,20 +10,21 @@ const Index: React.FC = () => {
     setCheck(location.pathname)
   }, [location.pathname])
   return (
-    <div className="fixed top-0 left-0 right-0 bg-lightPurple  text-white p-2 shadow-md">
-      <nav
-        className=" container  mx-auto flex text-base justify-between items-center pl-4 pr-4 "
-        style={{ minHeight: 48 }}
-      >
-        <div className=" font-bold">
-          <Link
-            to="/"
-            className={`text-xl font-semibold  leading-full py-2 px-4 hover:text-pink`}
-          >
-            欢迎来到我的博客
-          </Link>
-        </div>
-        {/* {!props.isHide && (
+    <div>
+      <div className="fixed top-0 left-0 right-0 bg-lightPurple  text-white p-2 shadow-md">
+        <nav
+          className=" container  mx-auto flex text-base justify-between items-center pl-4 pr-4 "
+          style={{ minHeight: 48 }}
+        >
+          <div className=" font-bold">
+            <Link
+              to="/"
+              className={`text-xl font-semibold  leading-full py-2 px-4 hover:text-pink`}
+            >
+              欢迎到来
+            </Link>
+          </div>
+          {/* {!props.isHide && (
         <div className=" flex-1 mr-auto">
           {' '}
           <Search
@@ -35,41 +36,43 @@ const Index: React.FC = () => {
           />
         </div>
       )} */}
-        <div className="flex space-x-4">
-          <Link
-            to="/home"
-            className={`text-sm font-semibold  leading-full py-2 px-4 hover:text-pink
+          <div className="flex space-x-4">
+            <Link
+              to="/home"
+              className={`text-sm font-semibold  leading-full py-2 px-4 hover:text-pink
               ${check === '/home' ? 'text-yellow-500' : ''}
               `}
-          >
-            主页
-          </Link>
-          <Link
-            to="/label"
-            className={`text-sm font-semibold  leading-full py-2 px-6 hover:text-pink ${
-              check === '/label' ? 'text-yellow-500' : ''
-            }`}
-          >
-            标签
-          </Link>
-          <Link
-            to="/user"
-            className={`text-sm font-semibold  leading-full py-2 px-6 hover:text-pink ${
-              check === '/user' ? 'text-yellow-500' : ''
-            }`}
-          >
-            我的
-          </Link>
-          <Link
-            to="/create"
-            className={`text-sm font-semibold  leading-full py-2 px-6 hover:text-pink ${
-              check === '/create' ? 'text-yellow-500' : ''
-            }`}
-          >
-            创作中心
-          </Link>
-        </div>
-      </nav>
+            >
+              主页
+            </Link>
+            <Link
+              to="/label"
+              className={`text-sm font-semibold  leading-full py-2 px-6 hover:text-pink ${
+                check === '/label' ? 'text-yellow-500' : ''
+              }`}
+            >
+              标签
+            </Link>
+            <Link
+              to="/user"
+              className={`text-sm font-semibold  leading-full py-2 px-6 hover:text-pink ${
+                check === '/user' ? 'text-yellow-500' : ''
+              }`}
+            >
+              我的
+            </Link>
+            <Link
+              to="/create"
+              className={`text-sm font-semibold  leading-full py-2 px-6 hover:text-pink ${
+                check === '/create' ? 'text-yellow-500' : ''
+              }`}
+            >
+              创作中心
+            </Link>
+          </div>
+        </nav>
+      </div>
+      <div style={{ height: 64 }}></div>
     </div>
   )
 }
