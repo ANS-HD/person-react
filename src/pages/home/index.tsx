@@ -44,7 +44,8 @@ const Index: React.FC = () => {
   return (
     <div className="container">
       {/* <Header onSearch={onSearch} isHide={false} /> */}
-      <div className="mb-2 ">
+      <div className=" ">
+        123234
         {/* <Tags onChange={onChange} /> */}
         <ReactMarkdown>*React-Markdown* is **Awesome**</ReactMarkdown>
       </div>

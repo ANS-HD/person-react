@@ -27,6 +27,9 @@ module.exports = {
       serif: ['Merriweather', 'serif'],
     },
     extend: {
+      minWidth: {
+        'custom': '800px'
+      },
       height: {
         '48px': '48px',
       },

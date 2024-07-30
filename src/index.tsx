@@ -16,7 +16,7 @@ root.render(
         },
       }}
     >
-      <div className="md:m-auto bg-white">
+      <div className="md:m-auto min-w-custom  bg-white">
         <App />
       </div>
     </ConfigProvider>

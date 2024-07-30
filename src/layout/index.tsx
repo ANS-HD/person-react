@@ -1,17 +1,32 @@
 import React from 'react'
 import Header from '@/components/header'
 import { Outlet } from 'react-router-dom'
-
-const Layout: React.FC = () => (
+import { Breadcrumb, Layout, Menu, theme } from 'antd'
+const { Content, Footer } = Layout
+const Index: React.FC = () => (
   <>
     {React.cloneElement(
-      <div>
+      <Layout style={{ display: 'flex' }}>
         <Header />
-        <Outlet />
-      </div>,
+        <div>
+          <Content
+            style={{
+              margin: '16px 10vw',
+              borderRadius: 8,
+              minHeight: 630,
+              background: '#fff',
+            }}
+          >
+            <div className="p-[24px]  rounded">
+              <Outlet />
+            </div>
+          </Content>
+          <Footer style={{ textAlign: 'center' }}>底部 created by hhd</Footer>
+        </div>
+      </Layout>,
       {},
     )}
   </>
 )
 
-export default Layout
+export default Index

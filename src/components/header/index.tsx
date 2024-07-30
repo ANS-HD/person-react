@@ -11,11 +11,8 @@ const Index: React.FC = () => {
   }, [location.pathname])
   return (
     <div>
-      <div className="fixed top-0 left-0 right-0 bg-lightPurple  text-white p-2 shadow-md">
-        <nav
-          className=" container  mx-auto flex text-base justify-between items-center pl-4 pr-4 "
-          style={{ minHeight: 48 }}
-        >
+      <div className="fixed h-12 top-0 left-0 right-0 bg-lightPurple   text-white p-2 shadow-md">
+        <nav className=" container min-w-custom   mx-auto flex text-base justify-between items-center pl-4 pr-4 ">
           <div className=" font-bold">
             <Link
               to="/"
@@ -72,7 +69,7 @@ const Index: React.FC = () => {
           </div>
         </nav>
       </div>
-      <div style={{ height: 64 }}></div>
+      <div style={{ height: 48 }}></div>
     </div>
   )
 }
