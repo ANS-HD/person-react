@@ -11,7 +11,7 @@ const Index: React.FC = () => {
   }, [location.pathname])
   return (
     <div>
-      <div className="fixed h-12 top-0 left-0 right-0 bg-lightPurple   text-white p-2 shadow-md">
+      <div className="fixed h-12 top-0 left-0 right-0   text-white p-2">
         <nav className=" container min-w-custom   mx-auto flex text-base justify-between items-center pl-4 pr-4 ">
           <div className=" font-bold">
             <Link
