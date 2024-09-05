@@ -34,7 +34,7 @@ const Index: React.FC = () => {
 
   const onChange = (v: string) => {
     // ?根据tag更新列表
-    navigate('/blog/index')
+    // navigate('/blog/index')
   }
 
   const onSearch = (value: string) => {
@@ -42,9 +42,8 @@ const Index: React.FC = () => {
   }
 
   return (
-    <div className="container">
-      {/* <Header onSearch={onSearch} isHide={false} /> */}
-      <div className=" ">
+    <div className="container h-[123vh]">
+      <div className="">
         123234
         {/* <Tags onChange={onChange} /> */}
         <ReactMarkdown>*React-Markdown* is **Awesome**</ReactMarkdown>

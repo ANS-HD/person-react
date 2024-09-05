@@ -2,6 +2,7 @@ import React, { lazy } from 'react'
 import { Navigate, RouteObject } from 'react-router-dom'
 import blogRouters from './blog/router'
 
+const NotFound = lazy(() => import('./pages/404'))
 const Home = lazy(() => import('./pages/home'))
 const About = lazy(() => import('./pages/about'))
 const Label = lazy(() => import('./pages/label'))
@@ -22,7 +23,7 @@ const Register = lazy(() => import('./pages/register'))
 const routes: (RouteObject & { auth?: boolean })[] = [
   {
     path: '*',
-    element: <>404 Not Found!</>,
+    element: <NotFound/>,
   },
   {
     path: '/',

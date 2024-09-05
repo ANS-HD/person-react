@@ -1,30 +1,19 @@
 import React, { useState } from 'react'
-import Header from '@/components/header'
+import {Header,Footer} from '@/components'
 import { Outlet } from 'react-router-dom'
-import { Breadcrumb, Layout, Menu, theme } from 'antd'
-const { Content, Footer } = Layout
 const Index: React.FC = () => {
   return (
     <>
       {React.cloneElement(
-        <Layout style={{ display: 'flex', background: '#e8cbfd' }}>
+        <div className=" flex flex-col min-h-screen ">
           <Header />
-          <div>
-            <Content
-              style={{
-                margin: '16px 10vw',
-                borderRadius: 8,
-                minHeight: 630,
-                background: '#fff',
-              }}
-            >
-              <div className="p-[24px]  rounded">
+              <div className=" flex-1 p-[12px] ">
                 <Outlet />
               </div>
-            </Content>
-            <Footer style={{ textAlign: 'center' }}>底部 created by hhd</Footer>
-          </div>
-        </Layout>,
+
+          <Footer/>
+            {/* <Footer style={{ textAlign: 'center' }}>底部 created by hhd</Footer> */}
+        </div>,
         {},
       )}
     </>
