@@ -1,5 +1,7 @@
 import { useRequest, useNavigate } from '@/hooks'
 import { Button, Form, Input, message } from 'antd'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/store'
 import React from 'react'
 import { userLogin } from '@/service'
 import { Pages } from './styled'
@@ -7,6 +9,8 @@ import { Pages } from './styled'
 const Index: React.FC = () => {
   const [form] = Form.useForm()
   const navigate = useNavigate()
+  const res = useSelector((state: RootState) => state.page['app'])
+  console.log(res)
 
   const login = useRequest(userLogin, {
     onError: (err) => {

@@ -6,7 +6,10 @@ import {
   useRoutes,
 } from '@/hooks'
 import type { NavigateFunction } from '@/hooks'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState, AppDispatch } from '@/store'
 import routes from '@/router'
+import { mount, unmount, loadingStart, loadingEnd, update } from '@/slices'
 import { message } from 'antd'
 
 export interface RouteObject {
@@ -19,12 +22,21 @@ export interface RouteObject {
 }
 
 const Index: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>()
+  const pageState = useSelector((state: RootState) => state.page['app'])
   const location = useLocation()
   const navigate = useNavigate()
   const [, setIsAuth] = useLocalStorageState<boolean>('auth', {
     defaultValue: false,
   })
 
+  // useEffect(() => {
+  //   dispatch(mount({ module: 'app', payload: { token: null } }))
+
+  //   return () => {
+  //     dispatch(unmount({ module: 'app' }))
+  //   }
+  // })
   function searchRouteDetail(
     path: string,
     routes: RouteObject[],
@@ -63,6 +75,12 @@ const Index: React.FC = () => {
     //如果需要权限验证
     if (routeDetail.index) {
       const token = localStorage.getItem('Token')
+      dispatch(
+        update({
+          module: 'app',
+          payload: { token: localStorage.getItem('Token') },
+        }),
+      )
       if (!token) {
         navigate('/login')
         return false
