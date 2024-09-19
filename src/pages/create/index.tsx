@@ -1,78 +1,197 @@
-import React, { useEffect, useRef, useState } from 'react';
-import 'quill/dist/quill.snow.css'; // Quill 样式
-import Quill from 'quill'; 
+import React, { useState } from 'react'
+import { Input, Button, Form, message, Tag, Upload } from 'antd'
+import ReactMde from 'react-mde'
+import * as Showdown from 'showdown'
+import { PlusOutlined } from '@ant-design/icons'
+import styled from 'styled-components'
+import 'react-mde/lib/styles/css/react-mde-all.css'
 
-const CreateBlogPost: React.FC = () => {
-  const [editorContent, setEditorContent] = useState<string>('');
-  const [title, setTitle] = useState<string>('');
-  const [description, setDescription] = useState<string>('');
-  const editorRef = useRef<HTMLDivElement | null>(null);
+// 样式定义部分
+const Container = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+`
 
-  useEffect(() => {
-    if (editorRef.current) {
-      const editor = new Quill(editorRef.current, {
-        theme: 'snow',
-        modules: {
-          toolbar: [
-            [{ header: [1, 2, false] }],
-            ['bold', 'italic', 'underline'],
-            ['link'],
-            [{ list: 'ordered' }, { list: 'bullet' }],
-            ['clean'],
-          ],
-        },
-      });
+const StyledFormItem = styled(Form.Item)`
+  margin-bottom: 24px;
+`
 
-      // Add event listener for when the content changes
-      editor.on('text-change', () => {
-        const content = editor.root.innerHTML;
-        setEditorContent(content);
-        extractMeta(content);
-      });
-    }
-  }, []);
+const StyledInput = styled(Input)`
+  font-size: 16px;
+`
 
-  const extractMeta = (html: string) => {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    
-    // Extract title and description based on your HTML structure
-    const titleElement = doc.querySelector('h1');
-    const descriptionElement = doc.querySelector('p.description');
-    
-    setTitle(titleElement ? titleElement.textContent || '' : '');
-    setDescription(descriptionElement ? descriptionElement.textContent || '' : '');
-  };
+const StyledTextArea = styled(Input.TextArea)`
+  font-size: 16px;
+`
+
+const StyledButton = styled(Button)`
+  font-size: 16px;
+  text-align: center;
+  background-color: #1890ff;
+  border-color: #1890ff;
+  &:hover {
+    background-color: #40a9ff;
+    border-color: #40a9ff;
+  }
+`
+
+const TagWrapper = styled.div`
+  margin-top: 8px;
+`
+
+const UploadWrapper = styled(Upload)`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+`
+
+const ImagePreview = styled.img`
+  max-width: 100px;
+  margin-right: 10px;
+  border-radius: 4px;
+  object-fit: cover;
+`
+
+const MarkdownEditor = styled(ReactMde)`
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+`
+
+// 组件逻辑
+const WriteBlog = () => {
+  const [title, setTitle] = useState<string>('')
+  const [description, setDescription] = useState<string>('')
+  const [content, setContent] = useState<string>('')
+  const [tags, setTags] = useState<string[]>([])
+  const [tagInput, setTagInput] = useState<string>('')
+  const [selectedTab, setSelectedTab] = useState<'write' | 'preview'>('write')
+  const [imageUrls, setImageUrls] = useState<string[]>([])
+
+  const converter = new Showdown.Converter()
 
   const handleSubmit = async () => {
-    const response = await fetch('/api/blogs', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ title, description, content: editorContent }),
-    });
-
-    if (response.ok) {
-      alert('Blog post uploaded successfully!');
-    } else {
-      alert('Failed to upload the blog post.');
+    if (!title || !description || !content) {
+      message.error('请填写所有字段！')
+      return
     }
-  };
+
+    try {
+      // await axios.post('/api/articles', { title, description, content, tags, images: imageUrls });
+      // message.success('文章发布成功！');
+      // setTitle('');
+      // setDescription('');
+      // setContent('');
+      // setTags([]);
+      // setImageUrls([]);
+    } catch (error) {
+      message.error('发布失败，请重试！')
+    }
+  }
+
+  const handleTagInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTagInput(e.target.value)
+  }
+
+  const handleTagAdd = () => {
+    if (tagInput && !tags.includes(tagInput)) {
+      setTags([...tags, tagInput])
+      setTagInput('')
+    }
+  }
+
+  const handleTagClose = (removedTag: string) => {
+    setTags(tags.filter((tag) => tag !== removedTag))
+  }
+
+  const handleImageUpload = (info: any) => {
+    if (info.file.status === 'done') {
+      const imageUrl = info.file.response.url
+      setImageUrls([...imageUrls, imageUrl])
+      message.success(`${info.file.name} 上传成功！`)
+    }
+  }
 
   return (
-    <div>
-      <h1>文章创建</h1>
-      <div ref={editorRef} style={{ height: '400px' }}></div>
-      <div>
-        <h2>Extracted Information</h2>
-        <p><strong>Title:</strong> {title}</p>
-        <p><strong>Description:</strong> {description}</p>
-        <p><strong>Content:</strong> {editorContent}</p>
-      </div>
-      <button onClick={handleSubmit}>Submit</button>
-    </div>
-  );
-};
+    <Container>
+      <Form layout="vertical" onFinish={handleSubmit}>
+        <StyledFormItem label="标题">
+          <StyledInput
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="请输入文章标题"
+          />
+        </StyledFormItem>
 
-export default CreateBlogPost;
+        <StyledFormItem label="描述">
+          <StyledTextArea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="请输入文章描述"
+            rows={3}
+          />
+        </StyledFormItem>
+
+        <StyledFormItem label="标签">
+          <StyledInput
+            value={tagInput}
+            onChange={handleTagInputChange}
+            onPressEnter={handleTagAdd}
+            placeholder="输入标签并按回车添加"
+          />
+          <TagWrapper>
+            {tags.map((tag) => (
+              <Tag key={tag} closable onClose={() => handleTagClose(tag)}>
+                {tag}
+              </Tag>
+            ))}
+          </TagWrapper>
+        </StyledFormItem>
+
+        <StyledFormItem label="上传图片">
+          <UploadWrapper
+            action="/api/upload"
+            listType="picture-card"
+            name="file"
+            onChange={handleImageUpload}
+            accept="image/*"
+          >
+            {imageUrls.length >= 8 ? null : (
+              <div>
+                <PlusOutlined /> 上传图片
+              </div>
+            )}
+          </UploadWrapper>
+          <div>
+            {imageUrls.map((url) => (
+              <ImagePreview key={url} src={url} alt="uploaded" />
+            ))}
+          </div>
+        </StyledFormItem>
+
+        <StyledFormItem label="内容">
+          <MarkdownEditor
+            value={content}
+            onChange={setContent}
+            selectedTab={selectedTab}
+            onTabChange={setSelectedTab}
+            generateMarkdownPreview={(markdown) =>
+              Promise.resolve(converter.makeHtml(markdown))
+            }
+          />
+        </StyledFormItem>
+
+        <StyledFormItem>
+          <StyledButton type="primary" htmlType="submit">
+            发布文章
+          </StyledButton>
+        </StyledFormItem>
+      </Form>
+    </Container>
+  )
+}
+
+export default WriteBlog

@@ -1,19 +1,26 @@
-import React, { useState } from 'react'
-import {Header,Footer} from '@/components'
+import React, { useState, useRef } from 'react'
+import { Header, Footer, FloatBottom } from '@/components'
 import { Outlet } from 'react-router-dom'
+import styled from 'styled-components'
+import { Wrap, Content } from './styled'
+
+const Placeholder = styled.div<{ height: number }>`
+  height: ${({ height }) => height || 0}px;
+`
 const Index: React.FC = () => {
   return (
     <>
       {React.cloneElement(
-        <div className=" flex flex-col min-h-screen ">
+        <Wrap>
           <Header />
-              <div className=" flex-1 p-[12px] ">
-                <Outlet />
-              </div>
-
-          <Footer/>
-            {/* <Footer style={{ textAlign: 'center' }}>底部 created by hhd</Footer> */}
-        </div>,
+          <Content>
+            <Outlet />
+          </Content>
+          <FloatBottom>
+            <Footer />
+          </FloatBottom>
+          {/* <Footer style={{ textAlign: 'center' }}>底部 created by hhd</Footer> */}
+        </Wrap>,
         {},
       )}
     </>

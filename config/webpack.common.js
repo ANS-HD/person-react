@@ -37,12 +37,16 @@ module.exports = {
     clean: true,
     publicPath: '/',
     //输出文件名
+    inject: true,
     clean: true, //每次打包前清空目录
     library: {
       name: 'Modal',
       type: 'var',
       export: 'default',
     },
+  },
+  externals: {
+    'showdown': 'showdown'
   },
   resolve: {
     alias: {
@@ -64,6 +68,11 @@ module.exports = {
       scriptAttributes: {
         type: 'text/javascript', // Add type="text/javascript" to script tags
       },
+      cdn: {
+        js: [
+          'https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js'
+        ]
+      }
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[hash].css',

@@ -1,76 +1,72 @@
-import React, { useEffect, useState } from 'react'
-import { Input } from 'antd'
+import React, { useEffect, useRef, useState } from 'react'
+import { Input, Flex } from 'antd'
 import { Link, useLocation } from 'react-router-dom'
+import styled from 'styled-components'
 const { Search } = Input
+
+const Wrap = styled.nav`
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  background-color: #fff;
+`
+const Placeholder = styled.div<{ height: number }>`
+  height: ${({ height }) => height || 0}px;
+`
 
 const Index: React.FC = () => {
   const location = useLocation()
+  const [headerHeight, setHeaderHeight] = useState(0)
+  const headerRef = useRef(null)
   const [check, setCheck] = useState(location.pathname)
   useEffect(() => {
     setCheck(location.pathname)
   }, [location.pathname])
+
+  useEffect(() => {
+    if (headerRef.current) {
+      setHeaderHeight(headerRef.current.offsetHeight)
+    }
+
+    // 监听窗口大小变化，动态更新 header 高度
+    const handleResize = () => {
+      if (headerRef.current) {
+        setHeaderHeight(headerRef.current.offsetHeight)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    // 清除事件监听
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
   return (
-    <div>
-      <div className="fixed bg-purple opacity-100 shadow h-12 top-0 left-0 right-0  z-50  overflow-hidden text-pink p-2">
-        <nav className=" container min-w-custom   mx-auto flex text-base justify-between items-center pl-4 pr-4 ">
-          <div className=" font-bold">
-            <Link
-              to="/"
-              className={`text-xl font-semibold  leading-full py-2 px-4 hover:text-pink`}
-            >
-              欢迎到来
-            </Link>
-          </div>
-          {/* {!props.isHide && (
-        <div className=" flex-1 mr-auto">
-          {' '}
-          <Search
-            style={{ width: 300 }}
-            placeholder="请输入关键字进行搜索"
-            allowClear
-            enterButton="搜索"
-            onSearch={props?.onSearch}
-          />
-        </div>
-      )} */}
-          <div className="flex space-x-4">
-            <Link
-              to="/home"
-              className={`text-sm font-semibold  leading-full py-2 px-4 hover:text-pink
-              ${check === '/home' ? 'text-yellow-500' : ''}
-              `}
-            >
-              主页
-            </Link>
-            <Link
-              to="/label"
-              className={`text-sm font-semibold  leading-full py-2 px-6 hover:text-pink ${
-                check === '/label' ? 'text-yellow-500' : ''
-              }`}
-            >
-              标签
-            </Link>
-            <Link
-              to="/user"
-              className={`text-sm font-semibold  leading-full py-2 px-6 hover:text-pink ${
-                check === '/user' ? 'text-yellow-500' : ''
-              }`}
-            >
-              我的
-            </Link>
-            <Link
-              to="/create"
-              className={`text-sm font-semibold  leading-full py-2 px-6 hover:text-pink ${
-                check === '/create' ? 'text-yellow-500' : ''
-              }`}
-            >
-              创作中心
-            </Link>
-          </div>
-        </nav>
-      </div>
-      <div style={{ height: 48, opacity:1, overflow:'hidden' }}></div>
-    </div>
+    <>
+      <Placeholder height={headerHeight} />
+      <Wrap ref={headerRef}>
+        <Link
+          to="/"
+          className={`text-xl font-semibold  leading-full py-2 px-4 hover:text-pink`}
+        >
+          欢迎到来
+        </Link>
+
+        <Flex gap="large" align="center">
+          <Link to="/home">主页</Link>
+          <Link to="/label">标签</Link>
+          <Link to="/user">我的</Link>
+          <Link to="/create">创作中心</Link>
+        </Flex>
+      </Wrap>
+      {/* <div style={{ height: 48, opacity: 1, overflow: 'hidden' }}></div> */}
+    </>
   )
 }
 
