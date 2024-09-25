@@ -1,29 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Input, Flex } from 'antd'
 import { Link, useLocation } from 'react-router-dom'
-import styled from 'styled-components'
-const { Search } = Input
 
-const Wrap = styled.nav`
-  position: fixed;
-  left: 0;
-  right: 0;
-  height: 48px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 24px;
-  background-color: #fff;
-`
-const Placeholder = styled.div<{ height: number }>`
-  height: ${({ height }) => height || 0}px;
-`
+const { Search } = Input
 
 const Index: React.FC = () => {
   const location = useLocation()
   const [headerHeight, setHeaderHeight] = useState(0)
-  const headerRef = useRef(null)
+  const headerRef = useRef<HTMLDivElement | null>(null) // 类型定义
   const [check, setCheck] = useState(location.pathname)
+
   useEffect(() => {
     setCheck(location.pathname)
   }, [location.pathname])
@@ -47,25 +33,29 @@ const Index: React.FC = () => {
       window.removeEventListener('resize', handleResize)
     }
   }, [])
+
   return (
     <>
-      <Placeholder height={headerHeight} />
-      <Wrap ref={headerRef}>
+      {/* 动态占位 div，确保内容不被 header 遮挡 */}
+      <div style={{ height: `${headerHeight}px` }} />
+      <nav
+        className="fixed left-0 right-0 h-12 flex justify-between items-center px-6 z-[9999] bg-white shadow-sm"
+        ref={headerRef}
+      >
         <Link
           to="/"
-          className={`text-xl font-semibold  leading-full py-2 px-4 hover:text-pink`}
+          className="text-xl font-semibold leading-full py-2 px-4 hover:text-pink"
         >
           欢迎到来
         </Link>
 
         <Flex gap="large" align="center">
-          <Link to="/home">主页</Link>
-          <Link to="/label">标签</Link>
-          <Link to="/user">我的</Link>
-          <Link to="/create">创作中心</Link>
+          <Link to="/main/home">主页</Link>
+          <Link to="/main/label">标签</Link>
+          <Link to="/main/user">我的</Link>
+          <Link to="/main/create">创作中心</Link>
         </Flex>
-      </Wrap>
-      {/* <div style={{ height: 48, opacity: 1, overflow: 'hidden' }}></div> */}
+      </nav>
     </>
   )
 }

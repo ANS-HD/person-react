@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react'
-import { Component } from './styled'
 
 type Props = {
   onOffsetHeightChange?: (height: number) => void
@@ -21,16 +20,17 @@ const Index: React.FC<Props> = (props) => {
   }, [ref.current?.offsetHeight])
 
   return (
-    <Component
+    <div
+      className=" left-0 bottom-0 w-full"
       ref={ref}
       style={{
         ...defaultStyle,
         ...props.style,
-        position: props.isFixed ? 'absolute' : 'fixed',
+        position: props.isFixed ? 'absolute' : 'fixed'
       }}
     >
       {props.children}
-    </Component>
+    </div>
   )
 }
 

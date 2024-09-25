@@ -1,68 +1,13 @@
 import React, { useState } from 'react'
-import { Input, Button, Form, message, Tag, Upload } from 'antd'
+import { Input, Button, Form, message, Tag, Upload, UploadProps } from 'antd'
 import ReactMde from 'react-mde'
 import * as Showdown from 'showdown'
 import { PlusOutlined } from '@ant-design/icons'
-import styled from 'styled-components'
 import 'react-mde/lib/styles/css/react-mde-all.css'
 
-// 样式定义部分
-const Container = styled.div`
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-`
+interface WriteBlogProps {}
 
-const StyledFormItem = styled(Form.Item)`
-  margin-bottom: 24px;
-`
-
-const StyledInput = styled(Input)`
-  font-size: 16px;
-`
-
-const StyledTextArea = styled(Input.TextArea)`
-  font-size: 16px;
-`
-
-const StyledButton = styled(Button)`
-  font-size: 16px;
-  text-align: center;
-  background-color: #1890ff;
-  border-color: #1890ff;
-  &:hover {
-    background-color: #40a9ff;
-    border-color: #40a9ff;
-  }
-`
-
-const TagWrapper = styled.div`
-  margin-top: 8px;
-`
-
-const UploadWrapper = styled(Upload)`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-`
-
-const ImagePreview = styled.img`
-  max-width: 100px;
-  margin-right: 10px;
-  border-radius: 4px;
-  object-fit: cover;
-`
-
-const MarkdownEditor = styled(ReactMde)`
-  border: 1px solid #d9d9d9;
-  border-radius: 4px;
-`
-
-// 组件逻辑
-const WriteBlog = () => {
+const WriteBlog: React.FC<WriteBlogProps> = () => {
   const [title, setTitle] = useState<string>('')
   const [description, setDescription] = useState<string>('')
   const [content, setContent] = useState<string>('')
@@ -97,7 +42,7 @@ const WriteBlog = () => {
   }
 
   const handleTagAdd = () => {
-    if (tagInput && !tags.includes(tagInput)) {
+    if (tagInput && !tags?.includes(tagInput)) {
       setTags([...tags, tagInput])
       setTagInput('')
     }
@@ -107,90 +52,103 @@ const WriteBlog = () => {
     setTags(tags.filter((tag) => tag !== removedTag))
   }
 
-  const handleImageUpload = (info: any) => {
+  const handleImageUpload: UploadProps['onChange'] = (info) => {
     if (info.file.status === 'done') {
-      const imageUrl = info.file.response.url
-      setImageUrls([...imageUrls, imageUrl])
-      message.success(`${info.file.name} 上传成功！`)
+      const imageUrl = info.file.response?.url
+      if (imageUrl) {
+        setImageUrls([...imageUrls, imageUrl])
+        message.success(`${info.file.name} 上传成功！`)
+      }
     }
   }
 
   return (
-    <Container>
+    <div className="max-w-2xl mx-auto p-5 bg-white rounded-lg shadow-md">
       <Form layout="vertical" onFinish={handleSubmit}>
-        <StyledFormItem label="标题">
-          <StyledInput
+        <Form.Item label="标题" className="mb-6">
+          <Input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="请输入文章标题"
+            className="text-base"
           />
-        </StyledFormItem>
+        </Form.Item>
 
-        <StyledFormItem label="描述">
-          <StyledTextArea
+        <Form.Item label="描述" className="mb-6">
+          <Input.TextArea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="请输入文章描述"
             rows={3}
+            className="text-base"
           />
-        </StyledFormItem>
+        </Form.Item>
 
-        <StyledFormItem label="标签">
-          <StyledInput
+        <Form.Item label="标签" className="mb-6">
+          <Input
             value={tagInput}
             onChange={handleTagInputChange}
             onPressEnter={handleTagAdd}
             placeholder="输入标签并按回车添加"
+            className="text-base"
           />
-          <TagWrapper>
+          <div className="mt-2 flex flex-wrap gap-2">
             {tags.map((tag) => (
               <Tag key={tag} closable onClose={() => handleTagClose(tag)}>
                 {tag}
               </Tag>
             ))}
-          </TagWrapper>
-        </StyledFormItem>
+          </div>
+        </Form.Item>
 
-        <StyledFormItem label="上传图片">
-          <UploadWrapper
+        <Form.Item label="上传图片" className="mb-6">
+          <Upload
             action="/api/upload"
             listType="picture-card"
             name="file"
             onChange={handleImageUpload}
             accept="image/*"
+            className="flex flex-wrap gap-2"
           >
             {imageUrls.length >= 8 ? null : (
               <div>
                 <PlusOutlined /> 上传图片
               </div>
             )}
-          </UploadWrapper>
-          <div>
+          </Upload>
+          <div className="mt-2 flex flex-wrap gap-2">
             {imageUrls.map((url) => (
-              <ImagePreview key={url} src={url} alt="uploaded" />
+              <img
+                key={url}
+                src={url}
+                alt="uploaded"
+                className="w-24 h-24 rounded-md object-cover mr-2"
+              />
             ))}
           </div>
-        </StyledFormItem>
+        </Form.Item>
 
-        <StyledFormItem label="内容">
-          <MarkdownEditor
-            value={content}
-            onChange={setContent}
-            selectedTab={selectedTab}
-            onTabChange={setSelectedTab}
-            generateMarkdownPreview={(markdown) =>
-              Promise.resolve(converter.makeHtml(markdown))
-            }
-          />
-        </StyledFormItem>
+        <Form.Item label="内容" className="mb-6">
+          <div className="border border-gray-300 rounded-md">
+            <ReactMde
+              value={content}
+              onChange={setContent}
+              selectedTab={selectedTab}
+              onTabChange={setSelectedTab}
+              generateMarkdownPreview={(markdown) =>
+                Promise.resolve(converter.makeHtml(markdown))
+              }
+            />
+          </div>
+        </Form.Item>
 
-        <StyledFormItem>
-          <StyledButton type="primary" htmlType="submit">
+        <Form.Item>
+          <Button type="primary" htmlType="submit" className="w-full text-base">
             发布文章
-          </StyledButton>
-        </StyledFormItem>
+          </Button>
+        </Form.Item>
       </Form>
-    </Container>
+    </div>
   )
 }
 

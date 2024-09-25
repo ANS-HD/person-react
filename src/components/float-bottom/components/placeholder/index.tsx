@@ -1,12 +1,11 @@
 import React from 'react';
-import { Component } from './styled';
 
 type Props = {
   height: number;
 };
 
 const Index: React.FC<Props> = (props) => {
-  return <Component height={props.height} />;
+  return <div style={{ height: `${props.height}px`, background: 'transparent'}} />;
 };
 
 export default Index;

@@ -30,19 +30,19 @@ const Index: React.FC = () => {
     routes: RouteObject[],
   ): RouteObject | null {
     for (let item of routes) {
-      console.log(item?.path, path)
+      // console.log(item?.path, path)
       if (item?.path === path) {
         return item
       }
       if (item?.children) {
         const result = searchRouteDetail(path, item.children)
-        if (result !== path) {
+        if (result?.path === path) {
           return result // 如果找到了子路由，就返回结果，否则继续查找其他子路由
         }
       }
     }
 
-    return null // 如果在当前路由和所有子路由中都没有找到匹配的路径，则返回null
+    // return null // 如果在当前路由和所有子路由中都没有找到匹配的路径，则返回null
   }
 
   //全局路由守卫
@@ -53,7 +53,6 @@ const Index: React.FC = () => {
   ) {
     //找到对应的路由信息，判断有没有权限控制
     const routeDetail = searchRouteDetail(pathname, routes)
-    console.log('routeDetail', routeDetail)
 
     //没有找到路由，跳转404
     if (!routeDetail) {
@@ -64,7 +63,7 @@ const Index: React.FC = () => {
     if (routeDetail.index) {
       const token = localStorage.getItem('Token')
       if (!token) {
-        navigate('/login')
+        navigate('/auth/login')
         return false
       }
     }
@@ -72,6 +71,8 @@ const Index: React.FC = () => {
   }
 
   useEffect(() => {
+    console.log(location.pathname)
+
     setIsAuth(guard(location.pathname, navigate, routes))
   }, [location.pathname])
 

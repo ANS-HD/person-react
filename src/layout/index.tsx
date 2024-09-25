@@ -1,26 +1,25 @@
 import React, { useState, useRef } from 'react'
 import { Header, Footer, FloatBottom } from '@/components'
 import { Outlet } from 'react-router-dom'
-import styled from 'styled-components'
-import { Wrap, Content } from './styled'
-
-const Placeholder = styled.div<{ height: number }>`
-  height: ${({ height }) => height || 0}px;
-`
+import { Flex } from 'antd'
 const Index: React.FC = () => {
   return (
     <>
       {React.cloneElement(
-        <Wrap>
+        <div className="flex flex-col min-h-screen">
+          {/* Header */}
           <Header />
-          <Content>
+
+          {/* Main content area */}
+          <div className="flex-grow">
             <Outlet />
-          </Content>
-          <FloatBottom>
+          </div>
+
+          {/* Footer */}
+          <FloatBottom isFixed={false}>
             <Footer />
           </FloatBottom>
-          {/* <Footer style={{ textAlign: 'center' }}>底部 created by hhd</Footer> */}
-        </Wrap>,
+        </div>,
         {},
       )}
     </>

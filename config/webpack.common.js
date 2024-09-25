@@ -63,14 +63,16 @@ module.exports = {
       template: './public/index.html',
       //模板文件名
       filename: 'index.html',
-      inject: 'body', // Inject script tags into body or head
+      inject: true, // Inject script tags into body or head
       scriptLoading: 'blocking', // Ensure scripts are loaded in order
       scriptAttributes: {
         type: 'text/javascript', // Add type="text/javascript" to script tags
       },
       cdn: {
         js: [
-          'https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js'
+          'https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js',
+          'https://cdn.tailwindcss.com'
+
         ]
       }
     }),

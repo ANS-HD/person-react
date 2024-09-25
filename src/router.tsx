@@ -1,5 +1,5 @@
 import React, { lazy } from 'react'
-import { Navigate, RouteObject } from 'react-router-dom'
+import { Navigate, Outlet, RouteObject } from 'react-router-dom'
 import blogRouters from './blog/router'
 
 const NotFound = lazy(() => import('./pages/404'))
@@ -23,59 +23,106 @@ const Register = lazy(() => import('./pages/register'))
 const routes: (RouteObject & { auth?: boolean })[] = [
   {
     path: '*',
-    element: <NotFound/>,
+    element: <NotFound />,
   },
   {
     path: '/',
-    element: <Navigate to="/home" replace />,
+    element: <Navigate to="/main/home" replace />,
   },
   {
-    path: '/',
+    path: '/main',
     element: <Layout />,
     children: [
       {
-        path: '/home',
+        path: '/main/home',
         element: <Home />,
       },
       {
-        path: '/about',
+        path: '/main/about',
         element: <About />,
       },
       {
-        path: '/label',
+        path: '/main/label',
         element: <Label />,
       },
       {
-        path: '/create',
+        path: '/main/create',
         element: <Create />,
         index: true,
       },
       {
-        path: '/user',
+        path: '/main/user',
         element: <User />,
         index: true,
       },
+      // {
+      //   path: '/login',
+      //   element: <Login />,
+      //   // 需要token验证
+      //   index: true,
+      // },
+      // {
+      //   path: '/register',
+      //   element: <Register />,
+      // },
+      // ...blogRouters,
+    ],
+  },
+  {
+    path: '/auth',
+    element: <Outlet />,
+    children: [
       {
-        path: '/login',
+        path: '/auth/login',
         element: <Login />,
         // 需要token验证
         index: true,
       },
       {
-        path: '/register',
+        path: '/auth/register',
         element: <Register />,
       },
-      // {
-      //   path: '/blog/index',
-      //   element: <Index />,
-      // },
-      // {
-      //   path: '/blog/my',
-      //   element: <My />,
-      // },
-      ...blogRouters,
     ],
   },
+  // {
+  //   path: '/',
+  //   element: <Layout />,
+  //   children: [
+  //     {
+  //       path: '/home',
+  //       element: <Home />,
+  //     },
+  //     {
+  //       path: '/about',
+  //       element: <About />,
+  //     },
+  //     {
+  //       path: '/label',
+  //       element: <Label />,
+  //     },
+  //     {
+  //       path: '/create',
+  //       element: <Create />,
+  //       index: true,
+  //     },
+  //     {
+  //       path: '/user',
+  //       element: <User />,
+  //       index: true,
+  //     },
+  //     // {
+  //     //   path: '/login',
+  //     //   element: <Login />,
+  //     //   // 需要token验证
+  //     //   index: true,
+  //     // },
+  //     // {
+  //     //   path: '/register',
+  //     //   element: <Register />,
+  //     // },
+  //     ...blogRouters,
+  //   ],
+  // },
 ]
 
 export default routes

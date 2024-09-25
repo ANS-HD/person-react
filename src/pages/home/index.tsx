@@ -60,7 +60,7 @@ const Index: React.FC = () => {
   // }
 
   return (
-    <div style={{ height: '123vh' }}>
+    <div>
       123234
       {/* <Tags onChange={onChange} /> */}
       {/* <ReactMarkdown>*React-Markdown* is **Awesome**</ReactMarkdown> */}
