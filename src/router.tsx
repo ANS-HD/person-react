@@ -1,6 +1,7 @@
 import React, { lazy } from 'react'
 import { Navigate, Outlet, RouteObject } from 'react-router-dom'
 import blogRouters from './blog/router'
+import createBlog from './createBlog/router'
 
 const NotFound = lazy(() => import('./pages/404'))
 const Home = lazy(() => import('./pages/home'))
@@ -67,11 +68,11 @@ const routes: (RouteObject & { auth?: boolean })[] = [
     path: '/auth',
     element: <Outlet />,
     children: [
-      {
-        path: '/auth/create',
-        element: <Create />,
-        index: true,
-      },
+      // {
+      //   path: '/auth/create',
+      //   element: <Create />,
+      //   index: true,
+      // },
       {
         path: '/auth/login',
         element: <Login />,
@@ -84,45 +85,8 @@ const routes: (RouteObject & { auth?: boolean })[] = [
       },
     ],
   },
-  // {
-  //   path: '/',
-  //   element: <Layout />,
-  //   children: [
-  //     {
-  //       path: '/home',
-  //       element: <Home />,
-  //     },
-  //     {
-  //       path: '/about',
-  //       element: <About />,
-  //     },
-  //     {
-  //       path: '/label',
-  //       element: <Label />,
-  //     },
-  //     {
-  //       path: '/create',
-  //       element: <Create />,
-  //       index: true,
-  //     },
-  //     {
-  //       path: '/user',
-  //       element: <User />,
-  //       index: true,
-  //     },
-  //     // {
-  //     //   path: '/login',
-  //     //   element: <Login />,
-  //     //   // 需要token验证
-  //     //   index: true,
-  //     // },
-  //     // {
-  //     //   path: '/register',
-  //     //   element: <Register />,
-  //     // },
-  //     ...blogRouters,
-  //   ],
-  // },
+  ...blogRouters,
+  ...createBlog,
 ]
 
 export default routes

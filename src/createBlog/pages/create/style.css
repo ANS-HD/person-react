@@ -1,0 +1,13 @@
+.bytemd {
+  background-color: #ffffff; /* 编辑器背景色 */
+  min-height: calc(100vh - 200px); /* 设置最小高度 */
+  max-height: calc(100vh - 80px);
+}
+
+.bytemd-fullscreen.bytemd {
+  position: fixed;
+  inset: 0;
+  border: none;
+  height: calc(100vh - 80px) !important;
+  top: 80px;
+}
