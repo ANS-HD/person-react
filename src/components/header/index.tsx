@@ -53,7 +53,7 @@ const Index: React.FC = () => {
           <Link to="/main/home">主页</Link>
           <Link to="/main/label">标签</Link>
           <Link to="/main/user">我的</Link>
-          <Link to="/main/create">创作中心</Link>
+          <Link to="/auth/create">创作中心</Link>
         </Flex>
       </nav>
     </>

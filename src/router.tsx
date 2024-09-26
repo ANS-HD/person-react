@@ -46,11 +46,6 @@ const routes: (RouteObject & { auth?: boolean })[] = [
         element: <Label />,
       },
       {
-        path: '/main/create',
-        element: <Create />,
-        index: true,
-      },
-      {
         path: '/main/user',
         element: <User />,
         index: true,
@@ -72,6 +67,11 @@ const routes: (RouteObject & { auth?: boolean })[] = [
     path: '/auth',
     element: <Outlet />,
     children: [
+      {
+        path: '/auth/create',
+        element: <Create />,
+        index: true,
+      },
       {
         path: '/auth/login',
         element: <Login />,
