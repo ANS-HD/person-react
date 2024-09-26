@@ -37,7 +37,7 @@ module.exports = {
     clean: true,
     publicPath: '/',
     //输出文件名
-    inject: true,
+    // inject: true,
     clean: true, //每次打包前清空目录
     library: {
       name: 'Modal',
@@ -70,7 +70,6 @@ module.exports = {
       },
       cdn: {
         js: [
-          'https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js',
           'https://cdn.tailwindcss.com'
 
         ]

@@ -1,15 +1,8 @@
 import React from 'react'
 import { Sign } from '../../components'
-import { Pages } from './styled'
 
 const Index: React.FC = () => {
-  return <Pages>
-
-    {
-      localStorage.getItem('Token')? <>12321</>:
-      <Sign />
-    }
-  </Pages>
+  return <div>{localStorage.getItem('Token') ? <>12321</> : <Sign />}</div>
 }
 
 export default Index
