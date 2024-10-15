@@ -1,4 +1,5 @@
 const path = require('path')
+const os = require('os')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 //清除build/dist文件夹文件
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
@@ -6,6 +7,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 // 编译进度条
 // const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+
+// cpu核数
+const threads = os.cpus().length
 
 const PurgeCss = require('@fullhuman/postcss-purgecss')
 
@@ -46,7 +50,7 @@ module.exports = {
     },
   },
   externals: {
-    'showdown': 'showdown'
+    showdown: 'showdown',
   },
   resolve: {
     alias: {
@@ -69,11 +73,8 @@ module.exports = {
         type: 'text/javascript', // Add type="text/javascript" to script tags
       },
       cdn: {
-        js: [
-          'https://cdn.tailwindcss.com'
-
-        ]
-      }
+        js: ['https://cdn.tailwindcss.com'],
+      },
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[hash].css',
@@ -84,13 +85,15 @@ module.exports = {
   optimization: {
     splitChunks: {
       chunks: 'all',
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
-        },
-      },
+      maxInitialRequests: 5,
+      minSize: 30000,
+      // cacheGroups: {
+      //   vendor: {
+      //     test: /[\\/]node_modules[\\/]/,
+      //     name: 'vendors',
+      //     chunks: 'all',
+      //   },
+      // },
     },
   },
 
@@ -102,7 +105,20 @@ module.exports = {
       },
       {
         test: /\.tsx?$/, // .ts或者tsx后缀的文件，就是typescript文件
-        use: 'ts-loader', // 就是上面安装的ts-loader
+        use: [
+          {
+            loader: 'thread-loader',
+            options: {
+              workers: os.cpus().length - 1, // 设置工作线程数量
+            },
+          },
+          {
+            loader: 'ts-loader',
+            options: {
+              happyPackMode: true, // 确保 ts-loader 兼容 thread-loader
+            },
+          },
+        ], // 就是上面安装的ts-loader
         exclude: '/node-modules/', // 排除node-modules目录
       },
       // 图片

@@ -68,13 +68,37 @@
 
 import React from 'react'
 import { Button, Form, Input, message } from 'antd'
+import { useRequest,useNavigate } from '@/hooks'
+
+import { userLogin } from '@/service'
 
 const LoginPage: React.FC = () => {
+    const navigate  = useNavigate()
+    const login = useRequest(userLogin, {
+    onError: (err) => {
+      console.log('err', err)
+
+      message.error(err.message)
+    },
+    onSuccess: (res) => {
+      console.log('res', res)
+
+      localStorage.setItem('Token', res.data?.token)
+      message.success('登陆成功!')
+      navigate('/main/home')
+    },
+    manual: true,
+  })
+  const onFinish = (values: any) => {
+    login.run(values)
+  }
   const handleLogin = async (values: {
     username: string
     password: string
   }) => {
     try {
+
+      login.run(values)
       // 执行登录请求逻辑，例如：
       // await axios.post('/api/login', values);
       // message.success('登录成功！');
