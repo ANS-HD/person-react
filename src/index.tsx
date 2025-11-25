@@ -16,7 +16,7 @@ root.render(
         },
       }}
     >
-      <div className="md:m-auto min-w-custom  bg-white">
+      <div style={{ margin: '0 auto', minWidth: '1200px', backgroundColor: 'white' }}>
         <App />
       </div>
     </ConfigProvider>

@@ -72,14 +72,10 @@ module.exports = {
       scriptAttributes: {
         type: 'text/javascript', // Add type="text/javascript" to script tags
       },
-      cdn: {
-        js: ['https://cdn.tailwindcss.com'],
-      },
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[hash].css',
     }),
-    // require('tailwindcss'),
     // PurgeCss(PurgeOptions),
   ],
   optimization: {

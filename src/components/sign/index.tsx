@@ -10,7 +10,7 @@ const Index: React.FC = () => {
     // <div className="flex h-full items-center justify-center">
     //   <div className="w-1/3  p-8 shadow-lg rounded-lg">
     //     <h2 className="text-2xl font-semibold mb-4">登录</h2>
-    <div className='w-20'>
+    <div style={{ width: '80px' }}>
         <Form
           form={form}
           name="login-form"
@@ -32,7 +32,7 @@ const Index: React.FC = () => {
             <Input.Password placeholder="密码" />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" className="w-full">
+            <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
               登录
             </Button>
           </Form.Item>

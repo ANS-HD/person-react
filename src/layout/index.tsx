@@ -6,12 +6,12 @@ const Index: React.FC = () => {
   return (
     <>
       {React.cloneElement(
-        <div className="flex flex-col min-h-screen">
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
           {/* Header */}
           <Header />
 
           {/* Main content area */}
-          <div className="flex-grow">
+          <div style={{ flexGrow: 1 }}>
             <Outlet />
           </div>
 

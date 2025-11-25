@@ -21,13 +21,15 @@ const Index: React.FC<Props> = (props) => {
 
   return (
     <div
-      className=" left-0 bottom-0 w-full"
-      ref={ref}
       style={{
+        left: 0,
+        bottom: 0,
+        width: '100%',
         ...defaultStyle,
         ...props.style,
         position: props.isFixed ? 'absolute' : 'fixed'
       }}
+      ref={ref}
     >
       {props.children}
     </div>

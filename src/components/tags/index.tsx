@@ -16,14 +16,23 @@ const Index: React.FC<Props> = (props) => {
   })
 
   return (
-    <div className="">
+    <div>
       {!tagsList.loading && (
-        <div className="flex">
+        <div style={{ display: 'flex' }}>
           {tagsList.data.data.list?.map((item) => {
             return (
               <p
                 onClick={() => props.onChange(item.tagName)}
-                className="m-2 hover:bg-red px-4 py-2 rounded-[5px] bg-blue"
+                style={{
+                  margin: '8px',
+                  padding: '8px 16px',
+                  borderRadius: '5px',
+                  backgroundColor: '#3b82f6',
+                  color: 'white',
+                  cursor: 'pointer',
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#ef4444'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3b82f6'}
                 key={item.id}
               >
                 {item.tagName}

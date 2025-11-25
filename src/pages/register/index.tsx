@@ -101,9 +101,9 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold mb-6 text-center">用户注册</h2>
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f3f4f6' }}>
+      <div style={{ width: '100%', maxWidth: '448px', padding: '32px', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)' }}>
+        <h2 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '24px', textAlign: 'center' }}>用户注册</h2>
         <Form
           layout="vertical"
           onFinish={handleRegister}
@@ -113,7 +113,7 @@ const RegisterPage: React.FC = () => {
             name="nickname"
             label="昵称"
             rules={[{ required: true, message: '请输入昵称!' }]} // 必填验证
-            className="mb-4"
+            style={{ marginBottom: '16px' }}
           >
             <Input placeholder="请输入昵称" />
           </Form.Item>
@@ -122,7 +122,7 @@ const RegisterPage: React.FC = () => {
             name="username"
             label="用户名"
             rules={[{ required: true, message: '请输入用户名!' }]} // 必填验证
-            className="mb-4"
+            style={{ marginBottom: '16px' }}
           >
             <Input placeholder="请输入用户名" />
           </Form.Item>
@@ -131,13 +131,13 @@ const RegisterPage: React.FC = () => {
             name="password"
             label="密码"
             rules={[{ required: true, message: '请输入密码!' }]} // 必填验证
-            className="mb-6"
+            style={{ marginBottom: '24px' }}
           >
             <Input.Password placeholder="请输入密码" />
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" className="w-full">
+            <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
               注册
             </Button>
           </Form.Item>

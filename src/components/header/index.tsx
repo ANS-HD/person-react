@@ -39,12 +39,31 @@ const Index: React.FC = () => {
       {/* 动态占位 div，确保内容不被 header 遮挡 */}
       <div style={{ height: `${headerHeight}px` }} />
       <nav
-        className="fixed left-0 right-0 h-12 flex justify-between items-center px-6 z-[9999] bg-white shadow-sm"
+        style={{
+          position: 'fixed',
+          left: 0,
+          right: 0,
+          height: '48px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          padding: '0 24px',
+          zIndex: 9999,
+          backgroundColor: 'white',
+          boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+        }}
         ref={headerRef}
       >
         <Link
           to="/"
-          className="text-xl font-semibold leading-full py-2 px-4 hover:text-pink"
+          style={{
+            fontSize: '20px',
+            fontWeight: 600,
+            lineHeight: '100%',
+            padding: '8px 16px',
+            textDecoration: 'none',
+            color: 'inherit',
+          }}
         >
           欢迎到来
         </Link>

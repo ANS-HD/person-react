@@ -23,22 +23,21 @@ const Index: React.FC = () => {
   const onSubmit = () => {}
 
   return (
-    <div className="flex flex-col h-screen">
-      <div className="h-[80px] p-4 flex items-center ">
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+      <div style={{ height: '80px', padding: '16px', display: 'flex', alignItems: 'center' }}>
         <Input.TextArea
           placeholder="请输入标题"
-          style={{ maxHeight: '80px' }}
-          className="flex-grow mr-4" // 添加右边距
+          style={{ maxHeight: '80px', flexGrow: 1, marginRight: '16px' }}
         />
-        <Button onClick={onBack} className="mr-4">
+        <Button onClick={onBack} style={{ marginRight: '16px' }}>
           返回
         </Button>
         <Button onClick={onSubmit} type="primary">
           发布
         </Button>
       </div>
-      <div className="flex-1 overflow-auto p-4">
-        <div className="h-full overflow-auto">
+      <div style={{ flex: 1, overflow: 'auto', padding: '16px' }}>
+        <div style={{ height: '100%', overflow: 'auto' }}>
           <Editor
             locale={zhHans}
             value={value} // 当前 Markdown 内容
